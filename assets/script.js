@@ -1,7 +1,7 @@
 const electron = require('electron');
-  const {
-    ipcRenderer
-  } = electron;
+const {
+  ipcRenderer
+} = electron;
 var firebaseConfig = {
   apiKey: "AIzaSyBtu0QiT7b7T1O2eBdGj5idS7F-mjAA8Pk",
   authDomain: "syntxt-10a1d.firebaseapp.com",
@@ -16,20 +16,20 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        // User just signed in.
-        $('#footer').text('Welcome ' +user.email);
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-    } else {
-      ipcRenderer.send('signOut', user);
-    }
+  if (user) {
+    // User just signed in.
+    $('#welcomeTxt').text('User: ' + user.email);
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    // ...
+  } else {
+    ipcRenderer.send('signOut', user);//todo event yakalanmamış
+  }
 });
 
 
@@ -85,3 +85,7 @@ $('#inBtn').on("click", function () {
     }
   });
 });
+
+var appClose =  function () {
+  ipcRenderer.send('appClose');
+};

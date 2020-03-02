@@ -8,10 +8,14 @@ const url = require('url')
 
 let win
 app.on('ready', girisEkranı);
+
 ipcMain.on('signIn', (ev, user)=>{
-    console.log(user);
+    // console.log(user);
     mainScreen(user);
     win.close();
+});
+ipcMain.on('appClose', (ev)=>{
+    app.quit();
 });
 
 
@@ -29,17 +33,7 @@ function mainScreen(user){
         protocol: 'file:',
         slashes: true
     }))
-    project.webContents.openDevTools();
-
-    project.on('closed', () => {
-        /*
-        Pencerenin referansını kaldırıyoruz.
-        Uygulama birden fazla pencereye sahipse, 
-        pencereleri bir dizide saklamanız öneriliyor.
-        İlgili nesnenin (örnekte win) silineceği zaman budur.
-        */
-        win = null
-    })
+    // project.webContents.openDevTools();
 }
 
 function girisEkranı() {

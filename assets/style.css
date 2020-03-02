@@ -19,6 +19,13 @@ h1 {
   margin-left: 10px;
   margin-top: 10px;
 }
+.projectName {
+  position: fixed;
+  margin-top: 15px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
 
 .middle {
   position: fixed;
@@ -37,10 +44,15 @@ h1 {
   width: 100%;
   color: white;
   text-align: center;
+  height: 1.5em;
 }
 
 .full{
   padding-right: 0px !important;
   padding-left: 0px !important;
   width: 100%;
+}
+
+p{
+  color: rgb(51, 58, 65);
 }
