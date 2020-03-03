@@ -3,10 +3,6 @@ body {
   padding: 5px;
 }
 
-h1 {
-  background-color: rgb(132, 151, 158);
-}
-
 .centered {
   position: absolute;
   top: 50%;
@@ -15,10 +11,16 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-.header {
+.myHeader {
   position: fixed;
-  margin-left: 10px;
-  margin-top: 5px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: rgb(235, 235, 235);
+  text-align: center;
+  max-height: 3em;
+  height: 3em;
+  overflow: hidden;
 }
 
 .projectName {
@@ -68,43 +70,73 @@ p {
   /* margin-top: 10px; */
 }
 
-#editor {
-  /* max-height: 500px; */
-  /* max-height: calc(100vh - ); */
-  height: calc(100vh - 7em);
-	background-color:rgba(255, 255, 255, 0.63);
-	border-collapse: separate; 
-	border: 1px solid rgb(222, 229, 231);
-	padding: 4px; 
-	box-sizing: content-box; 
-	-webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
-	box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-	border-top-right-radius: 3px; border-bottom-right-radius: 3px;
-	border-bottom-left-radius: 3px; border-top-left-radius: 3px;
-  overflow: scroll;
-	outline: none;
+/* SİDE BAR CSS */
+
+.preview {
+  height: calc(100vh - 4.5em);
+  /* 100% Full-height */
+  width: 0;
+  /* 0 width - change this with JavaScript */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Stay on top */
+  top: 3em;
+  /* left: 0; */
+  right: 0;
+  background-color: rgb(51 , 58, 65);
+  /* Black*/
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidebar */
 }
 
-#voiceBtn {
-  width: 20px;
-  color: transparent;
-  background-color: transparent;
-  transform: scale(2.0, 2.0);
-  -webkit-transform: scale(2.0, 2.0);
-  -moz-transform: scale(2.0, 2.0);
-  border: transparent;
+/* Position and style the close button (top right corner) */
+.preview .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+  /* font-size: 10px;
   cursor: pointer;
-  box-shadow: none;
-  -webkit-box-shadow: none;
+  background-color: rgb(51 , 58, 65);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  position: fixed;
+  margin-top: 0;
+  margin-right: 0; */
 }
 
-div[data-role="editor-toolbar"] {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+.openbtn:hover {
+  background-color: #444;
 }
 
-.dropdown-menu a {
-  cursor: pointer;
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-right .5s;
+  /* If you want a transition effect */
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .preview {
+    padding-top: 15px;
+  }
+
+  .preview a {
+    font-size: 18px;
+  }
 }
