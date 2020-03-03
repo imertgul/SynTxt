@@ -63,10 +63,11 @@ p {
 
 .main {
   position: fixed;
-  top: 10px;
+  top: 3.5em;
   width: 100%;
-  bottom: 2em;
+  bottom: 1.5em;
   margin-left: 15px;
+  max-height: calc(100vh - 4.5em);
   /* margin-top: 10px; */
 }
 
@@ -124,10 +125,9 @@ p {
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
+#myEditor {
   transition: margin-right .5s;
   /* If you want a transition effect */
-  padding: 20px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -139,4 +139,16 @@ p {
   .preview a {
     font-size: 18px;
   }
+}
+
+
+#markdown-editor{
+    width: calc(100vw - 20px);
+    height: calc(100vh - 4.5em - 20px);
+    overflow: scroll;
+}
+
+#html-preview{
+  background-color: white;
+  white-space: pre-wrap;
 }

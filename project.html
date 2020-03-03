@@ -10,6 +10,7 @@
         rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/external/style/jquery-linedtextarea.css">
 </head>
 
 <body>
@@ -46,16 +47,14 @@
     <div class="projectName">
         
     </div> -->
-    <div id="myPreview" class="preview">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    </div>
-
+    
     <div class="main">
-        <div class="row">
-            <div class="col-6">
-            </div>
-            <div class="col-6">
-            </div>
+        <div id="myPreview" class="preview">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div id="html-preview"></div>
+        </div>
+        <div id="myEditor">
+            <textarea wrap="off" id="markdown-editor"></textarea>
         </div>
     </div>
 
@@ -105,17 +104,20 @@
 <script src="./assets/script.js"></script>
 <script src="./assets/external/bootstrap-wysiwyg.js"></script>
 <script src="./assets/editor.js"></script>
+<script src="./assets/external/script/jquery-linedtextarea.js"></script>
 <script>
     /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
     function openNav() {
         document.getElementById("myPreview").style.width = "50%";
-        document.getElementById("main").style.marginRight = "50%";
+        document.getElementById("myEditor").style.width = " calc(50vw - 20px);";
+        document.getElementById("myEditor").style.marginRight = "50%";
     }
 
     /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
     function closeNav() {
         document.getElementById("myPreview").style.width = "0";
-        document.getElementById("main").style.marginRight = "0";
+        document.getElementById("myEditor").style.width = " calc(100vw - 20px);";
+        document.getElementById("myEditor").style.marginRight = "0";
     }
 </script>
 
