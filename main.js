@@ -5,62 +5,55 @@ const {
 } = require('electron')
 const path = require('path')
 const url = require('url')
+let win = [];
+app.on('ready', editorEkranı);
 
-let win
-app.on('ready', girisEkranı);
-
-ipcMain.on('signIn', (ev, user)=>{
-    // console.log(user);
-    mainScreen(user);
-    win.close();
-});
-ipcMain.on('appClose', (ev)=>{
-    app.quit();
+ipcMain.on('export', (ev)=>{
+    exportWindow()
 });
 
 
-function mainScreen(user){
-    project = new BrowserWindow({
+
+function exportWindow(){
+    win[1] = new BrowserWindow({
+        width: 400,
+        height: 400,  
         frame: false,
-        fullscreen: true,
         webPreferences: {
             nodeIntegration: true,
             // webSecurity: false
         }
     })
-    project.loadURL(url.format({
-        pathname: path.join(__dirname, 'project.html'),
+    win[1].loadURL(url.format({
+        pathname: path.join(__dirname, './pages/export.html'),
         protocol: 'file:',
         slashes: true
     }))
-    // project.webContents.openDevTools();
+    win[1].webContents.openDevTools();
+    win[1].on('closed', () => {
+        win[1] = null
+    })
 }
 
-function girisEkranı() {
+function editorEkranı() {
     // Yeni bir pencere yarat
-    win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        frame: false,
+    win[0] = new BrowserWindow({
+        //width: 800,
+        //height: 600,
+        fullscreen: true,
+        frame: true,
         webPreferences: {
             nodeIntegration: true,
             // webSecurity: false
         }
     })
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, 'auth.html'),
+    win[0].loadURL(url.format({
+        pathname: path.join(__dirname, './pages/index.html'),
         protocol: 'file:',
         slashes: true
     }))
-    // win.webContents.openDevTools();
-    win.on('closed', () => {
-        /*
-        Pencerenin referansını kaldırıyoruz.
-        Uygulama birden fazla pencereye sahipse, 
-        pencereleri bir dizide saklamanız öneriliyor.
-        İlgili nesnenin (örnekte win) silineceği zaman budur.
-        */
-        win = null
+    win[0].webContents.openDevTools();
+    win[0].on('closed', () => {
+        win[0] = null
     })
 }
-

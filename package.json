@@ -1,7 +1,7 @@
 {
   "name": "syntxt",
-  "version": "1.0.0",
-  "description": "Markdown editor with Electron",
+  "version": "0.2.0",
+  "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^8.0.1"
+    "electron": "^8.1.0"
   }
 }
