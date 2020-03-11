@@ -21,7 +21,6 @@ function exportWindow(){
         frame: false,
         webPreferences: {
             nodeIntegration: true,
-            // webSecurity: false
         }
     })
     win[1].loadURL(url.format({
@@ -29,7 +28,7 @@ function exportWindow(){
         protocol: 'file:',
         slashes: true
     }))
-    win[1].webContents.openDevTools();
+    // win[1].webContents.openDevTools();
     win[1].on('closed', () => {
         win[1] = null
     })
