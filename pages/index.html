@@ -17,7 +17,7 @@
   <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="../css/style.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="../css/jquery-linedtextarea.css">
 </head>
 
 <body>
@@ -43,12 +43,18 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <button class="btn btn-primary" id="menu-toggle">Menu</button>
-        <button class="btn btn-light" style="margin-left: 5px;">𝐁</button>
-        <button class="btn btn-light" style="margin-left: 5px;">𝐼</button>
-        <button class="btn btn-light" style="margin-left: 5px;">🅃</button>
-        <button class="btn btn-light" style="margin-left: 5px;">ST</button>
-        
-    
+        <button type="button" id="bold" class="btn btn-dark btn-sm editor-btn">B</button>
+        <button type="button" id="italic" class="btn btn-dark btn-sm editor-btn">I</button>
+        <button type="button" id="heading" class="btn btn-dark btn-sm editor-btn">H</button>
+        <button type="button" id="sThrough" class="btn btn-dark btn-sm editor-btn">ST</button>
+        <button type="button" id="uList" class="btn btn-dark btn-sm editor-btn">UL</button>
+        <button type="button" id="oList" class="btn btn-dark btn-sm editor-btn">OL</button>
+        <button type="button" id="cList" class="btn btn-dark btn-sm editor-btn">CL</button>
+        <button type="button" id="bQuote" class="btn btn-dark btn-sm editor-btn">BQ</button>
+        <button type="button" id="code" class="btn btn-dark btn-sm editor-btn">C</button>
+        <button type="button" id="table" class="btn btn-dark btn-sm editor-btn">T</button>
+        <button type="button" id="link" class="btn btn-dark btn-sm editor-btn">L</button>
+        <button type="button" id="img" class="btn btn-dark btn-sm editor-btn">IMG</button>
 
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -65,8 +71,11 @@
       </nav>
 
       <div class="container-fluid">
+        <textarea id="m-editor" cols="30" rows="30" style="width: 800px;"></textarea>
         <h1 class="mt-4">Markdown Editor: SynTxt</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita corporis cum repellat dolorum atque praesentium aliquid nihil sequi earum voluptas ipsam eum doloremque voluptates, blanditiis nulla officia ab mollitia commodi?</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita corporis cum repellat dolorum atque
+          praesentium aliquid nihil sequi earum voluptas ipsam eum doloremque voluptates, blanditiis nulla officia ab
+          mollitia commodi?</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional,
           and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the
           menu when clicked.</p>
@@ -116,5 +125,7 @@
   integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
 </script>
 <script src="../js/script.js"></script>
+<script src="../js/jquery-linedtextarea.js"></script>
+<script src="../js/editor.js"></script>
 
 </html>
