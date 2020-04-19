@@ -21,7 +21,7 @@
  */
 
 .linedwrap {
-	border: 1px solid #c0c0c0;
+	/* border: 1px groove #c0c0c0; */
 	padding: 3px;
 }
 
@@ -33,6 +33,7 @@
 .linedtextarea textarea, .linedwrap .codelines .lineno {
 	font-size: 10pt;
 	font-family: monospace;
+	/* font-family: inherit; */
 	line-height: normal !important;
 }
 
@@ -44,11 +45,12 @@
 
 .linedwrap .lines {
 	margin-top: 0px;
-	width: 50px;
+	width: 25px;
 	float: left;
 	overflow: hidden;
-	border-right: 1px solid #c0c0c0;
-	margin-right: 10px;
+	border-right: 1px ridge #c0c0c0;
+	margin-right: 5px;
+	/* background: #c0c0c0; */
 }
 
 .linedwrap .codelines {
@@ -56,12 +58,14 @@
 }
 
 .linedwrap .codelines .lineno {
-	/* color:#AAAAAA; */
-	color: black;
+	columns: #333333;;
+	/* color: black; */
 	padding-right: 0.5em;
+	/* margin-left: 0px; */
+	/* padding-left: 0.5em; */
 	padding-top: 0.0em;
 	text-align: right;
-	white-space: nowrap;
+	white-space: normal;
 }
 
 .linedwrap .codelines .lineselect {

@@ -51,7 +51,7 @@ function editorEkranı() {
         protocol: 'file:',
         slashes: true
     }))
-    win[0].webContents.openDevTools();
+    // win[0].webContents.openDevTools();
     win[0].on('closed', () => {
         win[0] = null
     })

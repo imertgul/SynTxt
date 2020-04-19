@@ -62,14 +62,15 @@
 			/* Turn off the wrapping of as we don't want to screw up the line numbers */
 			textarea.attr("wrap", "off");
 			textarea.css({resize:'none'});
-			var originalTextAreaWidth	= textarea.outerWidth();
+			var originalTextAreaWidth	= textarea.outerWidth()+200;
+			// var originalTextAreaWidth	= textarea.outerWidth( true );
 
 			/* Wrap the text area in the elements we need */
 			textarea.wrap("<div class='linedtextarea'></div>");
 			var linedTextAreaDiv	= textarea.parent().wrap("<div class='linedwrap' style='width:" + originalTextAreaWidth + "px'></div>");
 			var linedWrapDiv 			= linedTextAreaDiv.parent();
 			
-			linedWrapDiv.prepend("<div class='lines' style='width:50px'></div>");
+			linedWrapDiv.prepend("<div class='lines' style='width:25px'></div>");
 			
 			var linesDiv	= linedWrapDiv.find(".lines");
 			linesDiv.height( textarea.height() + 6 );
