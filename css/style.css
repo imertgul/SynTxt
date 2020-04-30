@@ -61,3 +61,8 @@ body {
 #m-editör{
   width: 100%;
 }
+
+.editor-btn{
+  margin-left: 2px;
+  margin-right: 2px;
+}
