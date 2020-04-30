@@ -58,6 +58,9 @@ body {
   height: 1.5em;
 }
 
+#preview{
+  background: #f7f7f7a1; 
+}
 #m-editör{
   width: 100%;
 }

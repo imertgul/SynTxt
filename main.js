@@ -43,7 +43,7 @@ function editorEkranı() {
         //width: 800,
         //height: 600,
         fullscreen: true,
-        frame: true,
+        frame: false,
         webPreferences: {
             nodeIntegration: true,
             // webSecurity: false
