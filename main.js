@@ -5,11 +5,14 @@ const {
 } = require('electron')
 const path = require('path')
 const url = require('url')
+const Swal = require('sweetalert2')
 let win = [];
 app.on('ready', editorEkranı);
 
-ipcMain.on('export', (ev)=>{
-    exportWindow()
+ipcMain.on('export', (ev, value)=>{
+    //exportWindow()
+    console.log(value);
+
 });
 
 
