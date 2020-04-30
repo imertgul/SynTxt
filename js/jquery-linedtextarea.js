@@ -121,7 +121,7 @@
 
   // default options
   $.fn.linedtextarea.defaults = {
-  	selectedLine: -1,
+  	selectedLine: 1,
   	selectedClass: 'lineselect'
   };
 })(jQuery);

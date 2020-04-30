@@ -22,11 +22,13 @@
 
 .linedwrap {
 	/* border: 1px groove #c0c0c0; */
-	padding: 3px;
+	/* padding: 3px; */
+	padding-left: 20px;
+	background: #f7f7f7a1; 
 }
 
 .linedtextarea {
-	padding: 0px;
+	padding-left: 10px;
 	margin: 0px;
 }
 
@@ -48,26 +50,26 @@
 	width: 25px;
 	float: left;
 	overflow: hidden;
-	border-right: 1px ridge #c0c0c0;
+	border-radius: 2px;
 	margin-right: 5px;
-	/* background: #c0c0c0; */
+	/* background: #ddeeff; */
 }
 
 .linedwrap .codelines {
 	padding-top: 5px;
+
 }
 
 .linedwrap .codelines .lineno {
-	columns: #333333;;
+	columns: #f10000;;
 	/* color: black; */
-	padding-right: 0.5em;
-	/* margin-left: 0px; */
-	/* padding-left: 0.5em; */
+	padding-right: 5px;
 	padding-top: 0.0em;
 	text-align: right;
 	white-space: normal;
 }
 
 .linedwrap .codelines .lineselect {
-	color: red;
+	color: rgb(0, 0, 0);
+	background: #b3b3b3a1; 
 }
