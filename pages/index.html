@@ -18,6 +18,7 @@
   <!-- Custom styles for this template -->
   <link href="../css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/jquery-linedtextarea.css">
+  <link rel="stylesheet" href="../css/tree.css">
 </head>
 
 <body>
@@ -26,14 +27,206 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Dosyalar </div>
+      <div class="sidebar-heading">
+        <h3 id="tree_label">
+          Files
+        </h3>
+      </div>
       <div class="list-group list-group-flush">
         <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a> 
+        <ul role="tree" aria-labelledby="tree_label">
+          <li role="treeitem" aria-expanded="false">
+            <span>
+              Projects
+            </span>
+            <ul role="group">
+              <li role="treeitem" class="doc">
+                project-1.docx
+              </li>
+              <li role="treeitem" class="doc">
+                project-2.docx
+              </li>
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  Project 3
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    project-3A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-3B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-3C.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem" class="doc">
+                project-4.docx
+              </li>
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  Project 5
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    project-5A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-5B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-5C.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-5D.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-5E.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    project-5F.docx
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li role="treeitem" aria-expanded="false">
+            <span>
+              Reports
+            </span>
+            <ul role="group">
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  report-1
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    report-1A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-1B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-1C.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  report-2
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    report-2A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-2B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-2C.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-2D.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  report-3
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    report-3A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-3B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-3C.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    report-3D.docx
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li role="treeitem" aria-expanded="false">
+            <span>
+              Letters
+            </span>
+            <ul role="group">
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  letter-1
+                </span>
+                <ul>
+                  <li role="treeitem" class="doc">
+                    letter-1A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-1B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-1C.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  letter-2
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    letter-2A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-2B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-2C.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-2D.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem" aria-expanded="false">
+                <span>
+                  letter-3
+                </span>
+                <ul role="group">
+                  <li role="treeitem" class="doc">
+                    letter-3A.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-3B.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-3C.docx
+                  </li>
+                  <li role="treeitem" class="doc">
+                    letter-3D.docx
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <label>
+            File or Folder Selected:
+            <input id="last_action" type="text" size="15" readonly="">
+          </label>
+        </p>
+        
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -257,7 +450,7 @@ MIT
 
           </textarea>
         </div>
-        <div class="col-md-6" id="preview" >
+        <div class="col-md-6" id="preview">
           <div class="container-fluid">
             <h1 class="mt-4">Markdown Editor: SynTxt</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita corporis cum repellat dolorum atque
@@ -269,7 +462,6 @@ MIT
               and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle
               the
               menu when clicked.</p>
-
           </div>
         </div>
       </div>
@@ -325,5 +517,6 @@ MIT
 <script src="../js/script.js"></script>
 <script src="../js/jquery-linedtextarea.js"></script>
 <script src="../js/editor.js"></script>
+<script src="../js/tree.js"></script>
 
 </html>

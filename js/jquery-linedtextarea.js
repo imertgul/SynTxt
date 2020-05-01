@@ -20,6 +20,8 @@
  *   	selectedLine: 10,
  *    selectedClass: 'lineselect'
  *   });
+ * 
+ *
  *
  * History:
  *   - 2010.01.08: Fixed a Google Chrome layout problem
@@ -27,6 +29,7 @@
  *   - 2010.01.06: Initial Release
  *
  */
+
 (function($) {
 
 	$.fn.linedtextarea = function(options) {
@@ -121,7 +124,7 @@
 
   // default options
   $.fn.linedtextarea.defaults = {
-  	selectedLine: 1,
+  	selectedLine: 2,
   	selectedClass: 'lineselect'
   };
 })(jQuery);
