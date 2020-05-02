@@ -30,15 +30,12 @@ $("#exportBtn").click(function (e) {
       })
     }
   }).then(function (result) {
-    if (result.value != undefined) {
-      Swal.fire({
-        type: 'success',
-        html: result.value + ' file exported'
-      })
-    }
+    Swal.fire({
+      type: 'success',
+      icon: 'success',
+      html: '<h3>'+result.value + ' file exported </h3>'
+    })
   })
-
-
 })
 
 $("#exitApp").click(function (e) {
@@ -54,6 +51,71 @@ $("#exitApp").click(function (e) {
     if (result.value) {
       ipcRenderer.send('exit');
     }
-  }) 
+  })
 })
 
+function roomNumber(min, max) {
+  return min + Math.floor((max - min) * Math.random());
+}
+
+$("#sync").click(function (e) {
+  Swal.fire({
+    title: 'You are going to work with a friend!',
+    text: "Create or a join a room",
+    icon: 'warning',
+    showCloseButton: true,
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#ffcc00',
+    confirmButtonText: 'Create',
+    cancelButtonText: 'Join'
+  }).then((result) => {
+    if (result.value) {
+      let tempNumber = roomNumber(0, 100000);
+      Swal.fire({
+        type: 'success',
+        text: 'Create',
+        showCloseButton: true,
+        html: '<h3>Your room number is: ' + tempNumber + '</h3>',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Create and Join!'
+      })
+    } else if (result.dismiss == 'cancel'){
+      Swal.fire({
+        title: 'Submit your Room number',
+        text: 'Room number must be created today!',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Join a room',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Request failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url
+          })
+        }
+      })
+    }
+
+  })
+})
