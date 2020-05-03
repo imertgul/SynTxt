@@ -7,8 +7,6 @@ function getAllLines() {
     return lines
 }
 
-
-
 function getCurrentLineNumber() {
     return editor.value.substring(0, editor.selectionStart).split("\n").length
 }

@@ -5,3 +5,7 @@ function pushText(roomNumber){
         room: roomNumber
     });
 }
+
+ipcRenderer.on('dataPulled', (ev, snapshot) => {
+    setAllLines(snapshot.data)
+})

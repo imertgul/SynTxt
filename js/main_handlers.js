@@ -21,3 +21,11 @@ function updateLineInfo() {
     let line_no = getCurrentLineNumber()
     document.getElementById("line-number-span").innerText = line_no
 }
+
+function setAllLines(lines){
+    editor.value = lines.join("\n")
+}
+
+function setLine(text, line_number){
+    
+}

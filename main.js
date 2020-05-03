@@ -8,7 +8,7 @@ const url = require('url')
 const Swal = require('sweetalert2')
 var firebase = require("firebase");
 let win = [];
-app.on('ready', editorEkranı);
+app.on('ready', editorScreen);
 
 var firebaseConfig = {
     apiKey: "AIzaSyBtu0QiT7b7T1O2eBdGj5idS7F-mjAA8Pk",
@@ -27,6 +27,7 @@ let isOnlive = false;
 ipcMain.on('exit', (ev) => {
     app.exit(0)
 });
+
 ipcMain.on('roomCreated', (ev, data) => {
     isOnlive = true;
     firebase.database().ref(data.room).set({
@@ -39,28 +40,13 @@ ipcMain.on('export', (ev, value) => {
     //todo
 });
 
-// function exportWindow(){
-//     win[1] = new BrowserWindow({
-//         width: 400,
-//         height: 400,  
-//         frame: false,
-//         webPreferences: {
-//             nodeIntegration: true,
-//         }
-//     })
-//     win[1].loadURL(url.format({
-//         pathname: path.join(__dirname, './pages/export.html'),
-//         protocol: 'file:',
-//         slashes: true
-//     }))
-//     // win[1].webContents.openDevTools();
-//     win[1].on('closed', () => {
-//         win[1] = null
-//     })
-// }
+ipcMain.on('joinedRoom', (ev, roomNumber) => {
+    return firebase.database().ref(roomNumber).once('value').then(function (snapshot) {
+        win[0].webContents.send('dataPulled', snapshot.val())
+    });
+})
 
-function editorEkranı() {
-
+function editorScreen() {
     win[0] = new BrowserWindow({
         fullscreen: true,
         frame: false,
