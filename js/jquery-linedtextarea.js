@@ -10,21 +10,12 @@
  * Released under the MIT License:
  *    http://www.opensource.org/licenses/mit-license.php
  * 
- * Usage:
- *   Displays a line number count column to the left of the textarea
- *   
- *   Class up your textarea with a given class, or target it directly
- *   with JQuery Selectors
  *   
  *   $(".lined").linedtextarea({
  *   	selectedLine: 10,
  *    selectedClass: 'lineselect'
  *   });
  *
- * History:
- *   - 2010.01.08: Fixed a Google Chrome layout problem
- *   - 2010.01.07: Refactored code for speed/readability; Fixed horizontal sizing
- *   - 2010.01.06: Initial Release
  *
  */
 (function($) {
@@ -120,8 +111,8 @@
 	};
 
   // default options
-  $.fn.linedtextarea.defaults = {
-  	selectedLine: 1,
-  	selectedClass: 'lineselect'
-  };
+//    $.fn.linedtextarea.defaults = {
+//    	selectedLine: -1,
+//    	selectedClass: 'lineselect'
+//    };
 })(jQuery);

@@ -15,6 +15,7 @@
   <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css"
     rel="stylesheet">
   <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Custom styles for this template -->
   <link href="../css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/jquery-linedtextarea.css">
@@ -43,7 +44,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
         style="margin-bottom: 0px; position: fixed; top: 0; width: 100%; z-index: 99;">
-        <button class="btn btn-primary" id="menu-toggle">Menu</button>
+        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-bars"></i></button>
         <button type="button" id="bold" class="btn btn-info btn-sm editor-btn">B</button>
         <button type="button" id="italic" class="btn btn-info btn-sm editor-btn">I</button>
         <button type="button" id="heading" class="btn btn-info btn-sm editor-btn">H</button>
@@ -56,25 +57,77 @@
         <button type="button" id="table" class="btn btn-info btn-sm editor-btn">T</button>
         <button type="button" id="link" class="btn btn-info btn-sm editor-btn">L</button>
         <button type="button" id="img" class="btn btn-info btn-sm editor-btn">IMG</button>
-
+        <b>Syntxt</b>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+
         <button type="button" id="sync" class="btn btn-warning btn-sm editor-btn">SyncWorking</button>
         <button class="btn btn-success" id="exportBtn" data-toggle="modal" data-target="#exportModal">Export</button>
       </nav>
+<!-- 
+      <div class="row"
+        style="padding-left: 30px; padding-bottom: 5px; padding-top: 5px; margin-top: 52px; background: #f7f7f7a1;  ">
+        <div class="col-md-5">
+          <button type="button" id="bold" class="btn btn-info btn-sm editor-btn">B</button>
+          <button type="button" id="italic" class="btn btn-info btn-sm editor-btn">I</button>
+          <button type="button" id="heading" class="btn btn-info btn-sm editor-btn">H</button>
+          <button type="button" id="sThrough" class="btn btn-info btn-sm editor-btn">ST</button>
+          <button type="button" id="uList" class="btn btn-info btn-sm editor-btn">UL</button>
+          <button type="button" id="oList" class="btn btn-info btn-sm editor-btn">OL</button>
+          <button type="button" id="cList" class="btn btn-info btn-sm editor-btn">CL</button>
+          <button type="button" id="bQuote" class="btn btn-info btn-sm editor-btn">BQ</button>
+          <button type="button" id="code" class="btn btn-info btn-sm editor-btn">C</button>
+          <button type="button" id="table" class="btn btn-info btn-sm editor-btn">T</button>
+          <button type="button" id="link" class="btn btn-info btn-sm editor-btn">L</button>
+          <button type="button" id="img" class="btn btn-info btn-sm editor-btn">IMG</button>
+        </div>
+        <div class="col-md-1">
+          <b>FileName.md</b>
+        </div>
+        <div class="col-md-6">
+          <b>Preview</b>
+        </div>
+      </div> -->
 
-      <div class="row" style="margin-left: -15px; margin-top: 53px;">
-
+      <div class="row" style="margin-left: -15px; margin-top: 52px">
         <div class="col-md-6" id="editor">
-          <textarea id="m-editor" cols="30" rows="100" style="width: calc(100% - 70px); "></textarea>
+          <textarea id="m-editor" class="lined" cols="30" rows="100"
+            style="width: calc(100% - 120px); height: calc(100% - 120px);">
+# Syntxt
+
+Syntxt is a cloud-enabled, offline-storage Markdown editor.
+
+  - Type some Markdown on the left
+  - See HTML in the right
+
+### Features!
+
+  - Work with your friend realtimed
+  - Export documents as Markdown, HTML and PDF
+
+
+This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the result
+
+### Installation
+
+Syntxt requires [Node.js](https://nodejs.org/) v4+ to run.
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+$ cd dillinger
+$ npm install -d
+$ node app
+```
+          </textarea>
         </div>
 
-        <div class="col-md-6" id="preview" >
+        <div class="col-md-6" id="preview">
           <div class="container-fluid" id="preview-content">
             <h1 class="mt-4">Markdown Editor: SynTxt</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita corporis cum repellat dolorum atque
@@ -145,4 +198,5 @@
 <script src="../js/main_handlers.js"></script>
 <script src="../js/string_handlers.js"></script>
 <script src="../js/string_analyzers.js"></script>
+
 </html>

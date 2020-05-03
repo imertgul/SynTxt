@@ -60,7 +60,12 @@ body {
 
 #preview{
   background: #f7f7f7a1; 
+  padding-top: 10px;
 }
+#editor{
+  background: #f7f7f7a1; 
+}
+
 #m-editör{
   width: 100%;
 }

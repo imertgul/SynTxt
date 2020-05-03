@@ -30,11 +30,13 @@ $("#exportBtn").click(function (e) {
       })
     }
   }).then(function (result) {
-    Swal.fire({
-      type: 'success',
-      icon: 'success',
-      html: '<h3>'+result.value + ' file exported </h3>'
-    })
+    if (result.value) {
+      Swal.fire({
+        type: 'success',
+        icon: 'success',
+        html: '<h3>'+result.value + ' file exported </h3>'
+      })
+    }
   })
 })
 
