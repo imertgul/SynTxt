@@ -6,19 +6,37 @@ const {
 const path = require('path')
 const url = require('url')
 const Swal = require('sweetalert2')
+var firebase = require("firebase");
 let win = [];
 app.on('ready', editorEkranı);
 
+var firebaseConfig = {
+    apiKey: "AIzaSyBtu0QiT7b7T1O2eBdGj5idS7F-mjAA8Pk",
+    authDomain: "syntxt-10a1d.firebaseapp.com",
+    databaseURL: "https://syntxt-10a1d.firebaseio.com",
+    projectId: "syntxt-10a1d",
+    storageBucket: "syntxt-10a1d.appspot.com",
+    messagingSenderId: "728805023306",
+    appId: "1:728805023306:web:7cac2b60b726bec76ed0b3",
+    measurementId: "G-Y1KW1EZM23"
+};
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
+let isOnlive = false;
 
-
-ipcMain.on('exit', (ev)=>{
+ipcMain.on('exit', (ev) => {
     app.exit(0)
 });
+ipcMain.on('roomCreated', (ev, data) => {
+    isOnlive = true;
+    firebase.database().ref(data.room).set({
+        "data" : data.text,
+    });
+});
 
-ipcMain.on('export', (ev, value)=>{
-    //exportWindow()
+ipcMain.on('export', (ev, value) => {
     console.log(value);
-
+    //todo
 });
 
 // function exportWindow(){

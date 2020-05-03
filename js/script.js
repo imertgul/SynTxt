@@ -82,7 +82,8 @@ $("#sync").click(function (e) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Create and Join!'
-      })
+      });
+      pushText(tempNumber)
     } else if (result.dismiss == 'cancel'){
       Swal.fire({
         title: 'Submit your Room number',
