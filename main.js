@@ -22,25 +22,50 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
-let isOnlive = false;
+let sync = {
+    isOnlive: false,
+    roomNumber: 0
+}
 
 ipcMain.on('exit', (ev) => {
     app.exit(0)
 });
 
-ipcMain.on('roomCreated', (ev, data) => {
-    isOnlive = true;
-    firebase.database().ref(data.room).set({
-        "data" : data.text,
+
+function updatehandler() {
+    firebase.database().ref(sync.roomNumber).on('child_changed', function (snapshot) {
+        //win[0].webContents.send('lineUpdated', snapshot.val())
+        win[0].webContents.send('lineUpdated', snapshot.val())
     });
+}
+
+ipcMain.on('linePush', (ev, snapshot) => {
+    if (sync.isOnlive) {
+        var updates = {};
+        updates[snapshot.lineNumber] = snapshot.lineText;
+        firebase.database().ref(snapshot.roomNumber).child('data').update(updates)
+    } else
+        console.log('isNotOnlive!');
+});
+
+
+ipcMain.on('roomCreated', (ev, data) => {
+    sync.isOnlive = true;
+    sync.roomNumber = data.room;
+    firebase.database().ref(data.room).set({
+        "data": data.text,
+    });
+    updatehandler()
 });
 
 ipcMain.on('export', (ev, value) => {
     console.log(value);
-    //todo
 });
 
 ipcMain.on('joinedRoom', (ev, roomNumber) => {
+    sync.isOnlive = true;
+    sync.roomNumber = roomNumber;
+    updatehandler()
     return firebase.database().ref(roomNumber).once('value').then(function (snapshot) {
         win[0].webContents.send('dataPulled', snapshot.val())
     });
