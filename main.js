@@ -33,9 +33,11 @@ ipcMain.on('exit', (ev) => {
 
 
 function updatehandler() {
-    firebase.database().ref(sync.roomNumber).on('child_changed', function (snapshot) {
-        //win[0].webContents.send('lineUpdated', snapshot.val())
-        win[0].webContents.send('lineUpdated', snapshot.val())
+    firebase.database().ref(sync.roomNumber).child('data').on('child_changed', function (snapshot) {
+        // child_added
+        // child_removed
+        let update_context = {'line':snapshot.key, 'value':snapshot.val()}
+        win[0].webContents.send('lineUpdated', update_context)
     });
 }
 
