@@ -16,29 +16,38 @@ $("#exportBtn").click(function (e) {
     title: 'Select Export Type',
     input: 'select',
     inputOptions: {
-      MD: 'MD files',
-      PDF: 'PDF',
-      HTML: 'HTML',
+      MD: 'md',
+      PDF: 'pdf',
+      HTML: 'html',
     },
     //inputPlaceholder: 'Select a fruit',
     footer: '<a href>Sorular için tıkla!</a>',
     showCancelButton: true,
     inputValidator: (value) => {
       return new Promise((resolve) => {
-        ipcRenderer.send('export', value);
+        let export_context = {'type':value, 'content':last_value}
+        ipcRenderer.send('export', export_context);
         resolve();
-      })
-    }
-  }).then(function (result) {
-    if (result.value) {
-      Swal.fire({
-        type: 'success',
-        icon: 'success',
-        html: '<h3>'+result.value + ' file exported </h3>'
       })
     }
   })
 })
+
+ipcRenderer.on('exportSuccess', (ev) => {
+  Swal.fire({
+    type: 'success',
+    icon: 'success',
+    html: '<h3> File exported </h3>'
+  })
+})
+
+ipcRenderer.on('exportFail', (ev) => {
+  Swal.fire({
+    icon: 'warning',
+    html: '<h3> File export failed </h3>'
+  })
+})
+
 
 $("#exitApp").click(function (e) {
   Swal.fire({

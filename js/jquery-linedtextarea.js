@@ -1,23 +1,3 @@
-/**
- * jQuery Lined Textarea Plugin 
- *   http://alan.blog-city.com/jquerylinedtextarea.htm
- *
- * Copyright (c) 2010 Alan Williamson
- * 
- * Version: 
- *    $Id: jquery-linedtextarea.js 464 2010-01-08 10:36:33Z alan $
- *
- * Released under the MIT License:
- *    http://www.opensource.org/licenses/mit-license.php
- * 
- *   
- *   $(".lined").linedtextarea({
- *   	selectedLine: 10,
- *    selectedClass: 'lineselect'
- *   });
- *
- *
- */
 (function($) {
 
 	$.fn.linedtextarea = function(options) {

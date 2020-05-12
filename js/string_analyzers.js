@@ -2,6 +2,7 @@ function getCurrentLine() {
     let lines = editor.value.substring(0, editor.value.length).split("\n")
     return lines[getCurrentLineNumber() - 1]
 }
+
 function getAllLines() {
     let lines = editor.value.substring(0, editor.value.length).split("\n")
     return lines

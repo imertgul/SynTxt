@@ -31,11 +31,6 @@ $("#m-editor").on("keydown click focus", function () {
     if (cursorPostionChanged()) {
         updateLineInfo()
     }
-    // let line_no = getCurrentLineNumber()
-    // $(".lined").linedtextarea({
-    //    	selectedLine: line_no,
-    //     selectedClass: 'lineselect'
-    // });
 })
 
 $("#bold").click(function () {

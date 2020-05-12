@@ -1,12 +1,24 @@
 const {
     app,
     BrowserWindow,
+    dialog,
     ipcMain
 } = require('electron')
 const path = require('path')
 const url = require('url')
 const Swal = require('sweetalert2')
 var firebase = require("firebase");
+
+// Export için Zahid'in ekledikleri
+var fs = require('fs') //
+var md_pdf = require("markdown-pdf") //
+var MarkdownIt = require('markdown-it') //
+md = new MarkdownIt(); //
+
+const md_filters = [{ 'name': "Markdown file", 'extensions': ["md"] }]
+const html_filters = [{ 'name': "HTML file", 'extensions': ["html"] }]
+const pdf_filters = [{ 'name': "PDF file", 'extensions': ["pdf"] }]
+
 let win = [];
 app.on('ready', editorScreen);
 
@@ -36,7 +48,7 @@ function updatehandler() {
     firebase.database().ref(sync.roomNumber).child('data').on('child_changed', function (snapshot) {
         // child_added
         // child_removed
-        let update_context = {'line':snapshot.key, 'value':snapshot.val()}
+        let update_context = { 'line': snapshot.key, 'value': snapshot.val() }
         win[0].webContents.send('lineUpdated', update_context)
     });
 }
@@ -60,8 +72,42 @@ ipcMain.on('roomCreated', (ev, data) => {
     updatehandler()
 });
 
-ipcMain.on('export', (ev, value) => {
-    console.log(value);
+ipcMain.on('export', (ev, export_context) => {
+    let content = export_context.content
+    let type = export_context.type
+
+    let options = {
+        'properties': [
+            'createDirectory'
+        ],
+        'defaultPath': app.getPath('desktop')
+    }
+
+    if (type == "MD") { options.filters = md_filters }
+    else if (type == "HTML") { options.filters = html_filters }
+    else { options.filters = pdf_filters }
+
+    let filepath = dialog.showSaveDialogSync(win[0], options) 
+
+    if (filepath) {
+        if (type == "PDF") {
+            md_pdf().from.string(content).to(filepath, function () {
+                win[0].webContents.send('exportSuccess')
+            })
+            return
+        }
+
+        if (type == "HTML") {
+            content = md.render(content.replace(/(?:\r\n|\r|\n)/g, "  \n"))
+        }
+
+        fs.writeFile(filepath, content, (err) => {
+            if (err) {
+                win[0].webContents.send('exportFail')
+            }
+            win[0].webContents.send('exportSuccess')
+        });
+    }
 });
 
 ipcMain.on('joinedRoom', (ev, roomNumber) => {
