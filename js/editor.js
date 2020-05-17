@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    updatePreview()
+});
+
 $(function () { // init lined textarea
     $("#m-editor").linedtextarea();
 });
