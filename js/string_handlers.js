@@ -43,14 +43,14 @@ function toggleLink() {
     else {
         let fixes_result = checkFixesLinkTags()
         let whole_result = checkWholeTextLinkTags(selected_value)
-        if (fixes_result){
+        if (fixes_result) {
             editor.setRangeText(
                 selected_value,
                 selection_start - fixes_result.start_offset,
                 selection_end + fixes_result.end_offset,
                 'select')
         }
-        else if (whole_result){
+        else if (whole_result) {
             editor.setRangeText(
                 selected_value.slice(whole_result.start, whole_result.end),
                 selection_start,
@@ -112,7 +112,7 @@ function toggleHeading(placeholder = "") {
 
     let break_next = checkNextLineBreak(selection_end)
     let break_prev = checkPrevLineBreak(selection_start, "#")
-    
+
 
     if (selected_value == "") {
         replacement = "## " + placeholder
@@ -138,8 +138,8 @@ function toggleHeading(placeholder = "") {
             offset += 1
             start_offset += 1
         }
-        if (break_next) { 
-            replacement += "\n" 
+        if (break_next) {
+            replacement += "\n"
             end_offset -= 1
         }
         range_start = (selection_start - offset < 0 ? 0 : selection_start - offset)
@@ -183,8 +183,8 @@ function toggleBlockQuote() {
         editor.setSelectionRange(selection_start + offset, selection_end + 10 + offset)
     }
 
-    else{
-        if(selected_value[0] == ">"){
+    else {
+        if (selected_value[0] == ">") {
             replacement = selected_value.slice(1).trimStart()
             start_offset = 0
             end_offset = 0
@@ -203,7 +203,7 @@ function toggleBlockQuote() {
             let check_tag_result = checkTag(selection_start, ">")
 
             if (check_tag_result.isTagged) {
-                editor.setRangeText(selected_value, 
+                editor.setRangeText(selected_value,
                     selection_start - check_tag_result.offset,
                     selection_end,
                     'select')
@@ -394,4 +394,64 @@ function deleteCurrentLine() {
 function insertAtNewLine(value) {
     editor.setRangeText("\n" + value + "\n")
     editor.setSelectionRange(editor.selectionStart + 1 + value.length, editor.selectionEnd + 1 + value.length)
+}
+
+function toggleCode() {
+    let selection_start = editor.selectionStart
+    let selection_end = editor.selectionEnd
+    let selected_value = editor.value.substring(selection_start, selection_end)
+    let break_prev = checkPrevLineBreak(selection_start, "`")
+    let break_next = checkNextLineBreak(selection_end)
+    let start_offset = 0
+    let end_offset = 0
+
+    if (selected_value == "") {
+        if (break_next || break_prev) {
+            replacement = "`enter code here`"
+            start_offset = 1
+            end_offset = 16
+        }
+        else {
+            replacement = "```bash\nenter code here\n```"
+            start_offset = 8
+            end_offset = 23
+        }
+        editor.setRangeText(replacement)
+        editor.setSelectionRange(selection_start + start_offset, selection_end + end_offset)
+    }
+    else {
+        if (selected_value.startsWith("```bash\n") && selected_value.endsWith("\n```")) {
+            replacement = selected_value.substring(8, selected_value.length - 4)
+        }
+        else if (selected_value.startsWith("`") && selected_value.endsWith("`")) {
+            replacement = selected_value.substring(1, selected_value.length - 1)
+        }
+        else if (editor.value.substring(selection_start - 8, selection_start) == "```bash\n" &&
+            editor.value.substring(selection_end, selection_end + 4) == "\n```") {
+            replacement = selected_value
+            start_offset = -8
+            end_offset = 4
+        }
+        else if (editor.value[selection_start - 1] == "`" || editor.value[selection_end + 1] == "`") {
+            replacement = selected_value
+            start_offset = -1
+            end_offset = 1
+        }
+        else {
+            if (break_next || break_prev) {
+                replacement = "`"+ selected_value + "`"
+                start_offset = 1
+                end_offset = 1 + selected_value.length
+            }
+            else {
+                replacement = "```bash\n" + selected_value + "\n```"
+                start_offset = 8
+                end_offset = 8 + selected_value.length
+            }
+            editor.setRangeText(replacement)
+            editor.setSelectionRange(selection_start + start_offset, selection_start + end_offset)
+            return
+        }
+        editor.setRangeText(replacement, selection_start + start_offset, selection_end + end_offset, 'select')
+    }
 }

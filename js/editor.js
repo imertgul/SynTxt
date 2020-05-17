@@ -148,6 +148,14 @@ $("#m-editor").keydown(function (e) {
             }
         }
     }
+    else if (!e.ctrlKey && !e.altKey && e.which == 9 && $("#m-editor").is(":focus")) {
+        e.preventDefault()
+        var selection_start = editor.selectionStart;
+        var selection_end = editor.selectionEnd;
+        editor.value = editor.value.substring(0, selection_start) + "\t" + editor.value.substring(selection_end)
+        editor.selectionStart = selection_start + 1
+        editor.selectionEnd = selection_end + 1;
+    }
 });
 
 
