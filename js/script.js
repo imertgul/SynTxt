@@ -33,21 +33,12 @@ $("#exportBtn").click(function (e) {
   })
 })
 
-ipcRenderer.on('exportSuccess', (ev) => {
+ipcRenderer.on('log', (ev, snap) => {
   Swal.fire({
-    type: 'success',
-    icon: 'success',
-    html: '<h3> File exported </h3>'
+    icon: snap.icon,
+    html: '<h3>' +snap.string+ '</h3>'
   })
 })
-
-ipcRenderer.on('exportFail', (ev) => {
-  Swal.fire({
-    icon: 'warning',
-    html: '<h3> File export failed </h3>'
-  })
-})
-
 
 $("#exitApp").click(function (e) {
   Swal.fire({
@@ -106,7 +97,7 @@ $("#sync").click(function (e) {
         if (result.value) {
           ipcRenderer.send('joinedRoom', result.value)
           Swal.fire({
-            title: `Data çekiliyooo`,
+            title: `Connecting...`,
             icon: 'success',
           })
         }
