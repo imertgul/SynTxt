@@ -15,21 +15,29 @@ $('.editor-btn').on("mousedown",
 )
 
 let editor = document.querySelector("#m-editor")
+let history = window.UndoRedojs(5);
+
 var MarkdownIt = require('markdown-it')
 md = new MarkdownIt();
 
+$("#m-editor").on("input", function () {
+    // Check if the new textarea value is different
+    if (history.current() !== editor.value) {
+        // Check for pastes, auto corrects..
+        if ((editor.value.length - history.current().length) > 1 || (editor.value.length - history.current().length) < -1 || (editor.value.length - history.current().length) === 0) {
+            // Record the textarea value and force to bypass cooldown
+            history.record(editor.value, true);
+            // Check for single key press, single chacacter paste..
+        } else {
+            // Record the textarea value
+            history.record(editor.value);
+        }
+    }
+})
 
-// $("#m-editor").on("change", function () {
-//     console.log("change");
-// })
-
-// $("#m-editor").on("textInput", function () {
-//     console.log("textinput");
-// })
-
-// $("#m-editor").on("input", function () {
-//     console.log("input");
-// })
+setTimeout(() => {
+    if (editor.value) history.record(editor.value, true);
+}, 100);
 
 $("#m-editor").on("keydown click focus", function () {
     if (cursorPostionChanged()) {
@@ -39,50 +47,62 @@ $("#m-editor").on("keydown click focus", function () {
 
 $("#bold").click(function () {
     toggleTextStyle(start_tag = "**", end_tag = "**", placeholder = "bold text")
+    $("#m-editor").trigger("input")
 });
 
 $("#italic").click(function () {
     toggleTextStyle(start_tag = "*", end_tag = "*", placeholder = "italic text")
+    $("#m-editor").trigger("input")
 });
 
 $("#sThrough").click(function () {
     toggleTextStyle(start_tag = "~~", end_tag = "~~", placeholder = "strikethrough")
+    $("#m-editor").trigger("input")
 });
 
 $("#heading").click(function () {
     toggleHeading(placeholder = "Heading")
+    $("#m-editor").trigger("input")
 });
 
 $("#link").click(function () {
     toggleLink()
+    $("#m-editor").trigger("input")
 });
 
 $("#img").click(function () {
     toggleImage()
+    $("#m-editor").trigger("input")
 });
 
 $("#code").click(function () {
     toggleCode()
+    $("#m-editor").trigger("input")
 });
 
 $("#bQuote").click(function () {
     toggleBlockQuote()
+    $("#m-editor").trigger("input")
 });
 
 $('#table').click(function () {
     insertTable()
+    $("#m-editor").trigger("input")
 })
 
 $("#uList").click(function () {
     makeUList()
+    $("#m-editor").trigger("input")
 })
 
 $("#cList").click(function () {
     makeCList()
+    $("#m-editor").trigger("input")
 })
 
 $("#oList").click(function () {
     makeOList()
+    $("#m-editor").trigger("input")
 })
 
 
@@ -159,6 +179,18 @@ $("#m-editor").keydown(function (e) {
         editor.value = editor.value.substring(0, selection_start) + "\t" + editor.value.substring(selection_end)
         editor.selectionStart = selection_start + 1
         editor.selectionEnd = selection_end + 1;
+    }
+    else if (e.ctrlKey && !e.altKey && !e.shiftKey && e.which == 90){ // undo
+        e.preventDefault()
+        if (history.undo(true) !== undefined) {
+            editor.value = history.undo();
+        }
+    }
+    else if (e.ctrlKey && !e.altKey && !e.shiftKey && e.which == 89) { // redo
+        e.preventDefault()
+        if (history.redo(true) !== undefined) {
+            editor.value = history.redo();
+        }
     }
 });
 
