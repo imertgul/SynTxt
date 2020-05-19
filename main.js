@@ -70,11 +70,11 @@ ipcMain.on('roomCreated', (ev, data) => {
     updatehandler()
 });
 
-ipcMain.on('linePush', (ev, snapshot) => {
+ipcMain.on('linePush', (ev, update_context) => {
     if (sync.isOnlive) {
         var updates = {};
-        updates[snapshot.lineNumber] = snapshot.lineText;
-        realTimeDatabase.ref(snapshot.roomNumber).child('data').update(updates)
+        updates[update_context.lineNumber - 1] = update_context.lineText;
+        realTimeDatabase.ref(sync.roomNumber).child('data').update(updates)
     } else
         console.log('isNotOnlive!');
 });

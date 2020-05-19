@@ -15,12 +15,13 @@ $('.editor-btn').on("mousedown",
 )
 
 let editor = document.querySelector("#m-editor")
-let history = window.UndoRedojs(5);
+let history = window.UndoRedojs(3);
 
 var MarkdownIt = require('markdown-it')
 md = new MarkdownIt();
 
 $("#m-editor").on("input", function () {
+    pushLine(getCurrentLineNumber(), getCurrentLine())
     // Check if the new textarea value is different
     if (history.current() !== editor.value) {
         // Check for pastes, auto corrects..

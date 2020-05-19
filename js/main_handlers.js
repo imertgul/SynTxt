@@ -27,13 +27,15 @@ function setAllLines(lines){
 }
 
 function setLine(line_number, value){
-    let lines = getAllLines()
-    let start_position = 0
-    let end_position
-    // tam güncellenirken text silinirse (komple veya kısmi, emin değilim) cannot read property of null hatası veriyor
-    for (let i = 0; i < line_number; i++) {
-        start_position += lines[i].length + 1
+    if (getCurrentLine() !== value) {
+        let lines = getAllLines()
+        let start_position = 0
+        let end_position
+        // tam güncellenirken text silinirse (komple veya kısmi, emin değilim) cannot read property of null hatası veriyor
+        for (let i = 0; i < line_number; i++) {
+            start_position += lines[i].length + 1
+        }
+        end_position = start_position + lines[line_number].length
+        editor.setRangeText(value, start_position, end_position)
     }
-    end_position = start_position + lines[line_number].length
-    editor.setRangeText(value, start_position, end_position)
 }
