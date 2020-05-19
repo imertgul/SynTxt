@@ -20,8 +20,16 @@ let history = window.UndoRedojs(3);
 var MarkdownIt = require('markdown-it')
 md = new MarkdownIt();
 
-$("#m-editor").on("input", function () {
-    pushLine(getCurrentLineNumber(), getCurrentLine())
+$("#m-editor").on("input", function (e) {
+    let previous_lines = getAllLines(history.undo())
+    let current_lines = getAllLines()
+    
+    if (previous_lines.length == current_lines){
+        pushLine(getCurrentLineNumber(), getCurrentLine())
+    }
+    else {
+        pushText(roomNumber = -1)
+    }
     // Check if the new textarea value is different
     if (history.current() !== editor.value) {
         // Check for pastes, auto corrects..

@@ -3,8 +3,14 @@ function getCurrentLine() {
     return lines[getCurrentLineNumber() - 1]
 }
 
-function getAllLines() {
-    let lines = editor.value.substring(0, editor.value.length).split("\n")
+function getAllLines(value) {
+    let lines
+    if (value) {
+        lines = value.substring(0, value.length).split("\n")
+    }
+    else {
+        lines = editor.value.substring(0, editor.value.length).split("\n")
+    }
     return lines
 }
 

@@ -42,8 +42,6 @@ ipcMain.on('exit', (ev) => {
 
 function updatehandler() {
     realTimeDatabase.ref(sync.roomNumber).child('data').on('child_changed', function (snapshot) {
-        // child_added
-        // child_removed
         let update_context = {
             'line': snapshot.key,
             'value': snapshot.val()
@@ -63,11 +61,13 @@ ipcMain.on('joinedRoom', (ev, roomNumber) => {
 
 ipcMain.on('roomCreated', (ev, data) => {
     sync.isOnlive = true;
-    sync.roomNumber = data.room;
-    realTimeDatabase.ref(data.room).set({
-        "data": data.text,
-    });
-    updatehandler()
+    sync.roomNumber = (data.room != -1 ? data.room : sync.roomNumber)
+    if (sync.roomNumber) {
+        realTimeDatabase.ref(sync.roomNumber).set({
+            "data": data.text,
+        });
+        updatehandler()
+    }
 });
 
 ipcMain.on('linePush', (ev, update_context) => {

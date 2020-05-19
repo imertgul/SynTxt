@@ -14,6 +14,7 @@ ipcRenderer.on('lineUpdated', (ev, update_context) => {
     setLine(Number(update_context.line), update_context.value)
 })
 
+
 function pushLine(lineNumber, lineText) {
     ipcRenderer.send('linePush', {
         lineNumber: lineNumber,
