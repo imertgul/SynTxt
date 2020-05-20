@@ -21,7 +21,8 @@ var MarkdownIt = require('markdown-it')
 md = new MarkdownIt();
 
 $("#m-editor").on("input", function (e) {
-    let previous_lines = getAllLines(history.undo())
+    let undo_obj = history.undo(true)
+    let previous_lines = getAllLines(undo_obj[0])
     let current_lines = getAllLines()
     
     if (previous_lines.length == current_lines){
@@ -35,17 +36,17 @@ $("#m-editor").on("input", function (e) {
         // Check for pastes, auto corrects..
         if ((editor.value.length - history.current().length) > 1 || (editor.value.length - history.current().length) < -1 || (editor.value.length - history.current().length) === 0) {
             // Record the textarea value and force to bypass cooldown
-            history.record(editor.value, true);
+            history.record(editor.value, editor.selectionStart ,true);
             // Check for single key press, single chacacter paste..
         } else {
             // Record the textarea value
-            history.record(editor.value);
+            history.record(editor.value, editor.selectionStart);
         }
     }
 })
 
 setTimeout(() => {
-    if (editor.value) history.record(editor.value, true);
+    if (editor.value) history.record(editor.value, editor.selectionStart, true);
 }, 100);
 
 $("#m-editor").on("keydown click focus", function () {
@@ -192,13 +193,17 @@ $("#m-editor").keydown(function (e) {
     else if (e.ctrlKey && !e.altKey && !e.shiftKey && e.which == 90){ // undo
         e.preventDefault()
         if (history.undo(true) !== undefined) {
-            editor.value = history.undo();
+            let undo_obj = history.undo();
+            editor.value = undo_obj[0]
+            editor.setSelectionRange(undo_obj[1], undo_obj[1])
         }
     }
     else if (e.ctrlKey && !e.altKey && !e.shiftKey && e.which == 89) { // redo
         e.preventDefault()
         if (history.redo(true) !== undefined) {
-            editor.value = history.redo();
+            let redo_obj = history.redo();
+            editor.value = redo_obj[0]
+            editor.setSelectionRange(redo_obj[1], redo_obj[1])
         }
     }
 });

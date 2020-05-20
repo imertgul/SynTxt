@@ -2,33 +2,38 @@
   var UndoRedojs = function (cooldownNumber) {
     if (!cooldownNumber || isNaN(cooldownNumber) || cooldownNumber <= 0) cooldownNumber = 1;
     var history = {};
-    history.stack = [''];
+    history.data_stack = [''];
+    history.selection_stack = [];
     history.currentNumber = 0;
     history.currentCooldownNumber = 0;
     history.selectionStart = 0;
-    history.record = function (data, force) {
-      if (history.currentNumber === history.stack.length - 1) { //checking for regular history updates
+    history.record = function (data, selection ,force) {
+      if (history.currentNumber === history.data_stack.length - 1) { //checking for regular history updates
         if ((history.currentCooldownNumber >= cooldownNumber || history.currentCooldownNumber === 0) && force !== true) { //history updates after a new cooldown
-          history.stack.push(data);
+          history.data_stack.push(data);
+          history.selection_stack.push(selection);
           history.currentNumber++;
           history.currentCooldownNumber = 1;
         } else if (history.currentCooldownNumber < cooldownNumber && force !== true) { //history updates during cooldown
-          history.current(data);
+          history.current(data, selection);
           history.currentCooldownNumber++;
         } else if (force === true) { //force to record without cooldown
-          history.stack.push(data);
+          history.data_stack.push(data);
+          history.selection_stack.push(selection);
           history.currentNumber++;
           history.currentCooldownNumber = cooldownNumber;
         }
-      } else if (history.currentNumber < history.stack.length - 1) { //checking for history updates after undo
+      } else if (history.currentNumber < history.data_stack.length - 1) { //checking for history updates after undo
         if (force !== true) { //history updates after undo
-          history.stack.length = history.currentNumber + 1;
-          history.stack.push(data);
+          history.data_stack.length = history.currentNumber + 1;
+          history.data_stack.push(data);
+          history.selection_stack.push(selection);
           history.currentNumber++;
           history.currentCooldownNumber = 1;
         } else if (force === true) { ////force to record after undo 
-          history.stack.length = history.currentNumber + 1;
-          history.stack.push(data);
+          history.data_stack.length = history.currentNumber + 1;
+          history.data_stack.push(data);
+          history.selection_stack.push(selection);
           history.currentNumber++;
           history.currentCooldownNumber = cooldownNumber;
         }
@@ -38,25 +43,28 @@
       if (history.currentNumber > 0) {
         if (readOnly !== true) {
           history.currentNumber--;
-          return history.stack[history.currentNumber];
+          return [history.data_stack[history.currentNumber], history.selection_stack[history.currentNumber]]
         } else {
-          return history.stack[history.currentNumber - 1];
+          return [history.data_stack[history.currentNumber - 1], history.selection_stack[history.currentNumber - 1]]
         }
       }
     }
     history.redo = function (readOnly) {
-      if (history.currentNumber < history.stack.length - 1) {
+      if (history.currentNumber < history.data_stack.length - 1) {
         if (readOnly !== true) {
           history.currentNumber++;
-          return history.stack[history.currentNumber];
+          return [history.data_stack[history.currentNumber], history.selection_stack[history.currentNumber]]
         } else {
-          return history.stack[history.currentNumber + 1];
+          return [history.data_stack[history.currentNumber + 1], history.selection_stack[history.currentNumber + 1]]
         }
       }
     }
-    history.current = function (data) {
-      if (data) history.stack[history.currentNumber] = data;
-      return history.stack[history.currentNumber];
+    history.current = function (data, selection) {
+      if (data) {
+        history.data_stack[history.currentNumber] = data;
+        history.selection_stack[history.currentNumber] = selection;
+      }
+      return history.data_stack[history.currentNumber];
     }
     return history;
   }
