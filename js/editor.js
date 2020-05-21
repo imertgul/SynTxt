@@ -14,7 +14,7 @@ $('.editor-btn').on("mousedown",
     }
 )
 
-let editor = document.querySelector("#m-editor")
+let editor = $("#m-editor")
 var MarkdownIt = require('markdown-it')
 md = new MarkdownIt();
 
