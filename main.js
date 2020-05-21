@@ -130,7 +130,7 @@ function editorScreen() {
         }
     })
     win[0].loadURL(url.format({
-        pathname: path.join(__dirname, './pages/new_ui.html'),
+        pathname: path.join(__dirname, './pages/index.html'),
         protocol: 'file:',
         slashes: true
     }))
