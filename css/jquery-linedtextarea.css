@@ -23,11 +23,13 @@
 .linedwrap {
 	/* border: 1px groove #c0c0c0; */
 	/* padding: 3px; */
-	padding-left: 20px;
-	background: #f7f7f7a1; 
+	/* padding-left: 20px; */
+	/* background: #262d3c;  */
+	background: #353f53;  
 }
 
 .linedtextarea {
+	
 	padding-left: 10px;
 	margin: 0px;
 }
@@ -40,6 +42,8 @@
 }
 
 .linedtextarea textarea {
+	background: #262d3c;
+	color: aliceblue;
 	padding-right:0.3em;
 	padding-top:0.3em;
 	border: 0;
@@ -62,8 +66,8 @@
 
 .linedwrap .codelines .lineno {
 	columns: #f10000;;
-	/* color: black; */
-	padding-right: 5px;
+	color: #929292;
+	/* padding-right: 5px; */
 	padding-top: 0.0em;
 	text-align: right;
 	white-space: normal;
@@ -71,5 +75,5 @@
 
 .linedwrap .codelines .lineselect {
 	color: rgb(0, 0, 0);
-	background: #b3b3b3a1; 
+	background: #262d3c; 
 }

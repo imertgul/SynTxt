@@ -5,11 +5,8 @@ const {
 } = electron;
 
 var isPreviewOn = false;
-$("#menu-toggle").click(function (e) {
-  e.preventDefault();
-  $("#wrapper").toggleClass("toggled");
-});
-$("#menu-toggle").trigger("click");
+
+$('body').toggleClass('sidebar-xs').removeClass('sidebar-mobile-main');
 
 $("#exportBtn").click(function (e) {
   Swal.fire({
