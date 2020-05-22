@@ -29,6 +29,7 @@
 }
 
 .linedtextarea {
+	
 	padding-left: 10px;
 	margin: 0px;
 }
@@ -41,6 +42,8 @@
 }
 
 .linedtextarea textarea {
+	background: #262d3c;
+	color: aliceblue;
 	padding-right:0.3em;
 	padding-top:0.3em;
 	border: 0;
@@ -63,8 +66,8 @@
 
 .linedwrap .codelines .lineno {
 	columns: #f10000;;
-	/* color: black; */
-	padding-right: 5px;
+	color: #929292;
+	/* padding-right: 5px; */
 	padding-top: 0.0em;
 	text-align: right;
 	white-space: normal;

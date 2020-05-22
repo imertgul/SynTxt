@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+	<title>SynTxt, Markdown Editor</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
@@ -16,14 +16,18 @@
 	<link href="../assets/css/layout.min.css" rel="stylesheet" type="text/css">
 	<link href="../assets/css/components.min.css" rel="stylesheet" type="text/css">
 	<link href="../assets/css/colors.min.css" rel="stylesheet" type="text/css">
-	<!-- /global stylesheets -->
 	
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- /global stylesheets -->
+
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="../css/jquery-linedtextarea.css">
 	<link href="../css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/jquery-linedtextarea.css">
+
 	<!-- Core JS files -->
-	
+
 
 </head>
 
@@ -32,19 +36,19 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-expand-md navbar-light navbar-static">
 		<div class="navbar-brand">
-			<a href="index.html" class="d-inline-block">
+			<a class="d-inline-block">
 				<img src="../assets/images/logo_light.png" alt="">
 			</a>
 		</div>
 
-		<div class="d-md-none">
+		<!-- <div class="d-md-none">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
 				<i class="icon-tree5"></i>
 			</button>
 			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
 				<i class="icon-paragraph-justify3"></i>
 			</button>
-		</div>
+		</div> -->
 
 		<div class="collapse navbar-collapse" id="navbar-mobile">
 			<ul class="navbar-nav">
@@ -53,103 +57,6 @@
 						class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
 						<i class="icon-paragraph-justify3"></i>
 					</a>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
-						<i class="icon-git-compare"></i>
-						<span class="d-md-none ml-2">Git updates</span>
-						<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">9</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-content wmin-md-350">
-						<div class="dropdown-content-header">
-							<span class="font-weight-semibold">Git updates</span>
-							<a href="#" class="text-default"><i class="icon-sync"></i></a>
-						</div>
-
-						<div class="dropdown-content-body dropdown-scrollable">
-							<ul class="media-list">
-								<li class="media">
-									<div class="mr-3">
-										<a href="#"
-											class="btn bg-transparent border-blue-300 text-blue-300 rounded-round border-2 btn-icon"><i
-												class="icon-git-pull-request"></i></a>
-									</div>
-
-									<div class="media-body">
-										Drop the IE <a href="#">specific hacks</a> for temporal inputs
-										<div class="text-muted font-size-sm">4 minutes ago</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<a href="#"
-											class="btn bg-transparent border-orange-300 text-orange-300 rounded-round border-2 btn-icon"><i
-												class="icon-git-commit"></i></a>
-									</div>
-
-									<div class="media-body">
-										Add full font overrides for popovers and tooltips
-										<div class="text-muted font-size-sm">36 minutes ago</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<a href="#"
-											class="btn bg-transparent border-green text-green rounded-round border-2 btn-icon"><i
-												class="icon-git-branch"></i></a>
-									</div>
-
-									<div class="media-body">
-										<a href="#">Chris Arney</a> created a new <span
-											class="font-weight-semibold">Design</span> branch
-										<div class="text-muted font-size-sm">2 hours ago</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<a href="#"
-											class="btn bg-transparent border-pink-300 text-pink-300 rounded-round border-2 btn-icon"><i
-												class="icon-git-merge"></i></a>
-									</div>
-
-									<div class="media-body">
-										<a href="#">Eugene Kopyov</a> merged <span
-											class="font-weight-semibold">Master</span> and <span
-											class="font-weight-semibold">Dev</span> branches
-										<div class="text-muted font-size-sm">Dec 18, 18:36</div>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<a href="#"
-											class="btn bg-transparent border-blue-300 text-blue-300 rounded-round border-2 btn-icon"><i
-												class="icon-git-pull-request"></i></a>
-									</div>
-
-									<div class="media-body">
-										Have Carousel ignore keyboard events
-										<div class="text-muted font-size-sm">Dec 12, 05:46</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-
-						<div class="dropdown-content-footer">
-							<a href="#" class="text-white mr-auto">All updates</a>
-							<div>
-								<a href="#" class="text-white" data-popup="tooltip" title="Mark all as read"><i
-										class="icon-radio-unchecked"></i></a>
-								<a href="#" class="text-white ml-2" data-popup="tooltip" title="Bug tracker"><i
-										class="icon-bug2"></i></a>
-							</div>
-						</div>
-					</div>
 				</li>
 			</ul>
 
@@ -197,46 +104,6 @@
 											class="badge badge-mark border-danger"></span></div>
 								</li>
 
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title text-white font-weight-semibold">Hanna Walden</a>
-										<span class="d-block text-muted font-size-sm">Project manager</span>
-									</div>
-									<div class="ml-3 align-self-center"><span
-											class="badge badge-mark border-success"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title text-white font-weight-semibold">Dori
-											Laperriere</a>
-										<span class="d-block text-muted font-size-sm">Business developer</span>
-									</div>
-									<div class="ml-3 align-self-center"><span
-											class="badge badge-mark border-warning-300"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title text-white font-weight-semibold">Vanessa
-											Aurelius</a>
-										<span class="d-block text-muted font-size-sm">UX expert</span>
-									</div>
-									<div class="ml-3 align-self-center"><span
-											class="badge badge-mark border-grey-400"></span></div>
-								</li>
 							</ul>
 						</div>
 
@@ -245,142 +112,7 @@
 							<a href="#" class="text-white"><i class="icon-gear"></i></a>
 						</div>
 					</div>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
-						<i class="icon-bubbles4"></i>
-						<span class="d-md-none ml-2">Messages</span>
-						<span class="badge badge-pill bg-warning-400 ml-auto ml-md-0">2</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
-						<div class="dropdown-content-header">
-							<span class="font-weight-semibold">Messages</span>
-							<a href="#" class="text-default"><i class="icon-compose"></i></a>
-						</div>
-
-						<div class="dropdown-content-body dropdown-scrollable">
-							<ul class="media-list">
-								<li class="media">
-									<div class="mr-3 position-relative">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#">
-												<span class="font-weight-semibold text-white">James Alexander</span>
-												<span class="text-muted float-right font-size-sm">04:58</span>
-											</a>
-										</div>
-
-										<span class="text-muted">who knows, maybe that would be the best thing for
-											me...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3 position-relative">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#">
-												<span class="font-weight-semibold text-white">Margo Baker</span>
-												<span class="text-muted float-right font-size-sm">12:16</span>
-											</a>
-										</div>
-
-										<span class="text-muted">That was something he was unable to do
-											because...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#">
-												<span class="font-weight-semibold text-white">Jeremy Victorino</span>
-												<span class="text-muted float-right font-size-sm">22:48</span>
-											</a>
-										</div>
-
-										<span class="text-muted">But that would be extremely strained and
-											suspicious...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#">
-												<span class="font-weight-semibold text-white">Beatrix Diaz</span>
-												<span class="text-muted float-right font-size-sm">Tue</span>
-											</a>
-										</div>
-
-										<span class="text-muted">What a strenuous career it is that I've
-											chosen...</span>
-									</div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#">
-												<span class="font-weight-semibold text-white">Richard Vango</span>
-												<span class="text-muted float-right font-size-sm">Mon</span>
-											</a>
-										</div>
-
-										<span class="text-muted">Other travelling salesmen live a life of
-											luxury...</span>
-									</div>
-								</li>
-							</ul>
-						</div>
-
-						<div class="dropdown-content-footer justify-content-center p-0">
-							<a href="#" class="text-muted w-100 py-2" data-popup="tooltip" title="Load more"><i
-									class="icon-menu7 d-block top-0"></i></a>
-						</div>
-					</div>
-				</li>
-
-				<li class="nav-item dropdown dropdown-user">
-					<a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle"
-						data-toggle="dropdown">
-						<img src="../assets/images/placeholders/placeholder.jpg" class="rounded-circle mr-2" height="34"
-							alt="">
-						<span>Victoria</span>
-					</a>
-
-					<div class="dropdown-menu dropdown-menu-right">
-						<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-						<a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
-						<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span
-								class="badge badge-pill bg-blue ml-auto">58</span></a>
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-						<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
-					</div>
-				</li>
+				</li>			
 			</ul>
 		</div>
 	</div>
@@ -411,27 +143,7 @@
 			<div class="sidebar-content">
 
 				<!-- User menu -->
-				<div class="sidebar-user">
-					<div class="card-body">
-						<div class="media">
-							<div class="mr-3">
-								<a href="#"><img src="../assets/images/placeholders/placeholder.jpg" width="38"
-										height="38" class="rounded-circle" alt=""></a>
-							</div>
-
-							<div class="media-body">
-								<div class="media-title font-weight-semibold">Victoria Baker</div>
-								<div class="font-size-xs opacity-50">
-									<i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
-								</div>
-							</div>
-
-							<div class="ml-3 align-self-center">
-								<a href="#" class="text-white"><i class="icon-cog3"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 				<!-- /user menu -->
 
 
@@ -500,7 +212,7 @@
 							<h6 class="mb-0 font-weight-semibold">
 								Markdown
 							</h6>
-							<span class="text-muted d-block">Basic examples of textarea</span>
+							<span class="text-muted d-block">Pure Markdown editor</span>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -508,7 +220,7 @@
 							<h6 class="mb-0 font-weight-semibold">
 								Preview
 							</h6>
-							<span class="text-muted d-block">Basic examples of textarea</span>
+							<span class="text-muted d-block">Html render of your markdown with the style</span>
 						</div>
 					</div>
 				</div>
@@ -519,14 +231,23 @@
 					<div class="col-md-6">
 						<div class="card">
 							<div class="card-header header-elements-inline">
-								<h6 class="card-title">Markdown</h6>
+								<h6 class="card-title">Automated buttons</h6>
 								<div class="header-elements">
 									<div class="list-icons">
-										<a class="list-icons-item icon-font"></a>
-										<a class="list-icons-item icon-font-size"></a>
-										<a class="list-icons-item icon-table2"></a>
-										<a class="list-icons-item icon-italic"></a>
-										<a class="list-icons-item icon-bold"></a>
+										
+										<a href="#" id="bold" class="text-white"><i class="fas fa-bold"></i></a>
+										<a href="#" id="italic" class="text-white"><i class="fas fa-italic"></i></a>
+										<a href="#" id="heading" class="text-white"><i class="fas fa-heading"></i></a>
+										<a href="#" id="sThrough" class="text-white"><i class="fas fa-strikethrough"></i></a>
+										<a href="#" id="uList" class="text-white"><i class="fas fa-list-ul"></i></a>
+										<a href="#" id="oList" class="text-white"><i class="fas fa-list-ol"></i></a>
+										<a href="#" id="cList" class="text-white"><i class="icon-gear"></i></a>
+										<a href="#" id="bQuote" class="text-white"><i class="icon-gear"></i></a>
+										<a href="#" id="code" class="text-white"><i class="fas fa-code"></i></a>
+										<a href="#" id="table" class="text-white"><i class="fas fa-table"></i></a>
+										<a href="#" id="link" class="text-white"><i class="fas fa-link"></i></a>
+										<a href="#" id="img" class="text-white"><i class="fas fa-images"></i></a>
+										
 										<a class="list-icons-item" data-action="collapse"></a>
 										<a class="list-icons-item" data-action="reload"></a>
 										<!-- <a class="list-icons-item" data-action="remove"></a> -->
@@ -538,25 +259,46 @@
 								<!-- <textarea id="m-editor" class="lined" style="width: calc(100% - 150px); height: calc(100% - 120px);"></textarea> -->
 								<div id="editor">
 									<textarea id="m-editor" class="lined"
-										style="width:calc(100% - 100px); height: 100%;" rows="50">LOLALE</textarea>
+										style="width:calc(100% - 200px); height: 100%;" rows="40">
+# Syntxt
+
+Syntxt is a cloud-enabled, offline-storage Markdown editor.
+
+  - Type some Markdown on the left
+  - See HTML in the right
+
+### Features!
+
+  - Work with your friend realtimed
+  - Export documents as Markdown, HTML and PDF
+
+
+This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the result
+
+### Installation
+
+Syntxt requires [Node.js](https://nodejs.org/) v4+ to run.
+
+Install the dependencies and devDependencies and start the server.
+
+```bash
+# Clone this repository
+git clone https://github.com/imertgul/SynTxt.git
+# Go into the repository
+cd SynTxt
+# Install dependencies
+npm install
+# Run the app
+npm start
+```
+									</textarea>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-6">
-						<div class="card">
-							<div class="card-header header-elements-inline">
-								<h6 class="card-title">View mode</h6>
-								<div class="header-elements">
-									<div class="list-icons">
-										<a class="list-icons-item" data-action="collapse"></a>
-										<a class="list-icons-item" data-action="reload"></a>
-										<!-- <a class="list-icons-item" data-action="remove"></a> -->
-									</div>
-								</div>
-							</div>
-
+						<div class="card">					
 							<div class="card-body">
 								<div class="container-fluid" id="preview-content">
 									<h1 class="mt-4">Markdown Editor: SynTxt</h1>
@@ -586,7 +328,7 @@
 			<!-- /content area -->
 
 			<!-- Footer -->
-			<div class="navbar navbar-expand-lg navbar-light">
+			<div class="navbar navbar-expand-lg navbar-light footer">
 				<div class="text-center d-lg-none w-100">
 					<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse"
 						data-target="#navbar-footer">
@@ -596,21 +338,16 @@
 				</div>
 
 				<div class="navbar-collapse collapse" id="navbar-footer">
-					<span class="navbar-text">
-						&copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a
-							href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>
-					</span>
 
 					<ul class="navbar-nav ml-lg-auto">
-						<li class="nav-item"><a href="https://kopyov.ticksy.com/" class="navbar-nav-link"
-								target="_blank"><i class="icon-lifebuoy mr-2"></i> Support</a></li>
-						<li class="nav-item"><a href="http://demo.interface.club/limitless/docs/"
-								class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> Docs</a>
+						<li class="nav-item"><p>Line: <span id="line-number-span" class="navbar-text">1</span></p></li>
+						<li class="nav-item"><a id="sync" class="navbar-nav-link font-weight-semibold" target="_blank"><i
+									class="icon-lifebuoy mr-2"></i> SyncWorking</a></li>
+						<li class="nav-item"><a id="exportBtn" class="navbar-nav-link" target="_blank"><i
+									class="icon-file-text2 mr-2"></i> Export/Save</a>
 						</li>
-						<li class="nav-item"><a
-								href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov"
-								class="navbar-nav-link font-weight-semibold"><span class="text-pink-400"><i
-										class="icon-cart2 mr-2"></i> Purchase</span></a></li>
+						<li class="nav-item"><a id="exitApp" class="navbar-nav-link font-weight-semibold"><span
+									class="text-pink-400"><i class="icon-warning mr-2"></i> Exit</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -627,32 +364,32 @@
 <!-- <script>
 		window.$ = window.jQuery = require('../assets/js/jquery.min.js');
 	</script>  -->
-	<!-- <script src="../assets/js/jquery.min.js"></script> -->
+<!-- <script src="../assets/js/jquery.min.js"></script> -->
 
 
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-	</script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-	</script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-	</script>
-	 <script src="../assets/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/js/blockui.min.js"></script>
-
-	<!-- /core JS files -->
-	<script src="../assets/js/app.js"></script>
-	<script src="../js/editor.js"></script>
-	<script src="../js/jquery-linedtextarea.js"></script>
-	<script src="../js/main_handlers.js"></script>
-	<script src="../js/script.js"></script>
-	<script src="../js/string_analyzers.js"></script>
-	<script src="../js/string_handlers.js"></script>
-	<script src="../js/database.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+</script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/blockui.min.js"></script>
+<script src="https://kit.fontawesome.com/07d77d194f.js" crossorigin="anonymous"></script>
+<!-- /core JS files -->
+<script src="../assets/js/app.js"></script>
+<script src="../js/editor.js"></script>
+<script src="../js/jquery-linedtextarea.js"></script>
+<script src="../js/main_handlers.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/string_analyzers.js"></script>
+<script src="../js/string_handlers.js"></script>
+<script src="../js/database.js"></script>
 
 
 </html>

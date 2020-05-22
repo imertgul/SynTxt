@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sweetalert2/theme-dark": "^3.1.4",
     "electron": "^8.1.0",
     "firebase": "^7.14.2",
     "markdown-it": "^10.0.0",
     "markdown-pdf": "^10.0.0",
-    "sweetalert2": "^9.10.12"
+    "sweetalert2": "^9.13.1"
   }
 }

@@ -52,15 +52,16 @@ body {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  /* width: 100%; 
   color: white;
   text-align: center;
-  height: 1.5em;
+  height: 1.5em; */
 }
 
 
 #editor{
-  background: #f7f7f7a1; 
+  background: #353f53; 
 }
 
 #m-editör{
