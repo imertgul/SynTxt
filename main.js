@@ -48,15 +48,21 @@ function updatehandler() {
         }
         win[0].webContents.send('lineUpdated', update_context)
     });
+
+    realTimeDatabase.ref(sync.roomNumber).child('data').on('child_added', function() {
+        sendDataToRenderer()
+    })
+
+    realTimeDatabase.ref(sync.roomNumber).child('data').on('child_removed', function() {
+        sendDataToRenderer()
+    })
 }
 
 ipcMain.on('joinedRoom', (ev, roomNumber) => {
     sync.isOnlive = true;
     sync.roomNumber = roomNumber;
     updatehandler()
-    return realTimeDatabase.ref(roomNumber).once('value').then(function (snapshot) {
-        win[0].webContents.send('dataPulled', snapshot.val())
-    });
+    return sendDataToRenderer()
 })
 
 ipcMain.on('roomCreated', (ev, data) => {
@@ -118,6 +124,12 @@ ipcMain.on('export', (ev, export_context) => {
         });
     }
 });
+
+function sendDataToRenderer(){
+    realTimeDatabase.ref(sync.roomNumber).once('value').then(function (snapshot) {
+        win[0].webContents.send('dataPulled', snapshot.val())
+    });
+}
 
 
 function editorScreen() {
