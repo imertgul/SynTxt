@@ -33,7 +33,8 @@ var realTimeDatabase = firebase.database();
 
 let sync = {
     isOnlive: false,
-    roomNumber: 0
+    roomNumber: 0,
+    userName: "zero"
 }
 
 ipcMain.on('exit', (ev) => {
@@ -58,19 +59,23 @@ function updatehandler() {
     })
 }
 
-ipcMain.on('joinedRoom', (ev, roomNumber) => {
+ipcMain.on('joinedRoom', (ev, snap) => {
     sync.isOnlive = true;
-    sync.roomNumber = roomNumber;
+    sync.roomNumber = snap.roomNumber;
+    sync.userName = snap.userName;
+    //TODO err handler
     updatehandler()
     return sendDataToRenderer()
 })
 
 ipcMain.on('roomCreated', (ev, data) => {
     sync.isOnlive = true;
+    sync.userName = data.userName;
     sync.roomNumber = (data.room != -1 ? data.room : sync.roomNumber)
     if (sync.roomNumber) {
         realTimeDatabase.ref(sync.roomNumber).set({
             "data": data.text,
+            // "users": data.userName
         });
         updatehandler()
     }

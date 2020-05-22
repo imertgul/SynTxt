@@ -1,8 +1,9 @@
-function pushText(roomNumber){
+function pushText(sync){
     let text = getAllLines();
     ipcRenderer.send('roomCreated', {
         text : text,
-        room: roomNumber
+        userName: sync.userName,
+        room: sync.roomNumber
     });
 }
 
