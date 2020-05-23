@@ -38,6 +38,12 @@ $("#exportBtn").click(function (e) {
   })
 })
 
+ipcRenderer.on('joinedSuccessfuly', (ev, snap) => {
+  sync.isOnlive = true;
+  sync.roomNumber = snap.roomNumber;
+  setStateBars(sync);
+})
+
 ipcRenderer.on('log', (ev, snap) => {
   Swal.fire({
     icon: snap.icon,
@@ -121,12 +127,8 @@ $("#sync").click(function (e) {
             }).then((result) => {
               if (result.value) {
                 sync.roomNumber = result.value;
-                sync.isOnlive = true;
                 ipcRenderer.send('joinedRoom', sync)
-                Swal.fire({
-                  title: `Connecting...`,
-                  icon: 'success',
-                })
+
               }
             })
           }
@@ -147,7 +149,7 @@ $("#sync").click(function (e) {
       }
     })
   }
-  
+
 })
 
 var setStateBars = function (sync) {
@@ -155,9 +157,11 @@ var setStateBars = function (sync) {
     $('#usersStatus').prop('disabled', false);
     $("#sync").prop('disabled', false);
     $('#onlineStatus').html('<span class="badge bg-success my-3 my-md-0 ml-md-3 mr-md-auto">Online</span>');
+    $('#roomStatus').html('<span class="badge bg-dark my-3 my-md-0 ml-md-3 mr-md-auto"> Room: '+ sync.roomNumber +'</span>');
   } else {
     $('#usersStatus').prop('disabled', true);
     $("#sync").prop('disabled', true);
     $('#onlineStatus').html('<span class="badge bg-warning my-3 my-md-0 ml-md-3 mr-md-auto">Offline</span>');
+    $('#roomStatus').html(' ');
   }
 }

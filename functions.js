@@ -1,8 +1,11 @@
 (function () {
     var someThings;
 
-    module.exports.onDisconnect = function (firebase, sync, msg) {
-        firebase.database().ref(sync.roomNumber).onDisconnect().set(msg, function (err) {
+    module.exports.pushUser = function (realTimeDatabase, sync) {
+        realTimeDatabase.ref(sync.roomNumber).child('users').push(sync.userName);
+    }
+    module.exports.onDisconnect = function (realTimeDatabase, sync, msg) {
+        realTimeDatabase.ref(sync.roomNumber).onDisconnect().set(msg, function (err) {
             if (err) {
                 win[0].webContents.send('log', {
                     string: 'Disconnected!',
@@ -10,6 +13,17 @@
                 })
             }
         })
+    }
+    module.exports.isAvalible = function (realTimeDatabase, sync) {
+        var connectedRef = realTimeDatabase.ref(sync.roomNumber);
+        connectedRef.once("value", function (snap) {
+            console.log(snap.val());
+            if (snap.exists()) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
     module.exports.isConnected = function (firebase) {
         var connectedRef = firebase.database().ref(".info/connected");

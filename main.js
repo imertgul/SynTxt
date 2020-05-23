@@ -50,22 +50,30 @@ function updatehandler() {
         win[0].webContents.send('lineUpdated', update_context)
     });
 
-    realTimeDatabase.ref(sync.roomNumber).child('data').on('child_added', function() {
+    realTimeDatabase.ref(sync.roomNumber).child('data').on('child_added', function () {
         sendDataToRenderer()
     })
 
-    realTimeDatabase.ref(sync.roomNumber).child('data').on('child_removed', function() {
+    realTimeDatabase.ref(sync.roomNumber).child('data').on('child_removed', function () {
         sendDataToRenderer()
     })
 }
 
 ipcMain.on('joinedRoom', (ev, snap) => {
-    sync.isOnlive = true;
     sync.roomNumber = snap.roomNumber;
     sync.userName = snap.userName;
-    //TODO err handler
-    updatehandler()
-    return sendDataToRenderer()
+
+    realTimeDatabase.ref(sync.roomNumber).once('value', function (snap) {
+        if (snap.exists()) {
+            sync.isOnlive = true;
+            win[0].webContents.send('joinedSuccessfuly', sync);
+            myFunctions.pushUser(realTimeDatabase, sync);
+            updatehandler()
+            return sendDataToRenderer()
+        }
+        else
+            return myFunctions.sweetAlerter(win[0], "Can not find a room!", "error");
+    })
 })
 
 ipcMain.on('roomCreated', (ev, data) => {
@@ -74,9 +82,9 @@ ipcMain.on('roomCreated', (ev, data) => {
     sync.roomNumber = (data.room != -1 ? data.room : sync.roomNumber)
     if (sync.roomNumber) {
         realTimeDatabase.ref(sync.roomNumber).set({
-            "data": data.text,
-            // "users": data.userName
+            "data": data.text
         });
+        myFunctions.pushUser(realTimeDatabase, sync);
         updatehandler()
     }
 });
@@ -130,7 +138,7 @@ ipcMain.on('export', (ev, export_context) => {
     }
 });
 
-function sendDataToRenderer(){
+function sendDataToRenderer() {
     realTimeDatabase.ref(sync.roomNumber).once('value').then(function (snapshot) {
         win[0].webContents.send('dataPulled', snapshot.val())
     });
