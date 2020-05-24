@@ -37,6 +37,8 @@ let sync = {
     userName: "zero"
 }
 
+let userList = [];
+
 ipcMain.on('exit', (ev) => {
     app.exit(0)
 });
@@ -66,8 +68,9 @@ ipcMain.on('joinedRoom', (ev, snap) => {
     realTimeDatabase.ref(sync.roomNumber).once('value', function (snap) {
         if (snap.exists()) {
             sync.isOnlive = true;
+            userList.push(sync.userName);            
             win[0].webContents.send('joinedSuccessfuly', sync);
-            myFunctions.pushUser(realTimeDatabase, sync);
+            myFunctions.setUsers(realTimeDatabase, sync);
             updatehandler()
             return sendDataToRenderer()
         }
@@ -84,7 +87,7 @@ ipcMain.on('roomCreated', (ev, data) => {
         realTimeDatabase.ref(sync.roomNumber).set({
             "data": data.text
         });
-        myFunctions.pushUser(realTimeDatabase, sync);
+        myFunctions.setUsers(realTimeDatabase, sync);
         updatehandler()
     }
 });

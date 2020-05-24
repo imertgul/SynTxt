@@ -1,8 +1,12 @@
 (function () {
     var someThings;
 
-    module.exports.pushUser = function (realTimeDatabase, sync) {
-        realTimeDatabase.ref(sync.roomNumber).child('users').push(sync.userName);
+    module.exports.setUsers = function (realTimeDatabase, sync) {
+        realTimeDatabase.ref(sync.roomNumber).child('users').push(sync.userName).once('value', function(snap){
+            console.log(snap);
+        });
+        //TODO: User list çekilip fronta aktarılacak
+
     }
     module.exports.onDisconnect = function (realTimeDatabase, sync, msg) {
         realTimeDatabase.ref(sync.roomNumber).onDisconnect().set(msg, function (err) {
@@ -14,27 +18,7 @@
             }
         })
     }
-    module.exports.isAvalible = function (realTimeDatabase, sync) {
-        var connectedRef = realTimeDatabase.ref(sync.roomNumber);
-        connectedRef.once("value", function (snap) {
-            console.log(snap.val());
-            if (snap.exists()) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-    }
-    module.exports.isConnected = function (firebase) {
-        var connectedRef = firebase.database().ref(".info/connected");
-        connectedRef.on("value", function (snap) {
-            if (snap.val() === true) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-    }
+
     module.exports.sweetAlerter = function (win, messages, icon) {
         win.webContents.send('log', {
             string: messages,

@@ -10,8 +10,6 @@ let sync = {
   userName: "zero"
 }
 
-$('body').toggleClass('sidebar-xs').removeClass('sidebar-mobile-main');
-$('#usersStatus').prop('disabled', true);
 
 $("#exportBtn").click(function (e) {
   Swal.fire({
@@ -67,9 +65,9 @@ $("#exitApp").click(function (e) {
   })
 })
 
-function roomNumber(min, max) {
-  return min + Math.floor((max - min) * Math.random());
-}
+// function roomNumber(min, max) {
+//   return min + Math.floor((max - min) * Math.random());
+// }
 
 $("#sync").click(function (e) {
   if (!sync.isOnlive) {
