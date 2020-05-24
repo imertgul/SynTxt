@@ -7,7 +7,8 @@ const {
 let sync = {
   isOnlive: false,
   roomNumber: 0,
-  userName: "zero"
+  userName: "zero",
+  userList: undefined
 }
 
 
@@ -40,6 +41,11 @@ ipcRenderer.on('joinedSuccessfuly', (ev, snap) => {
   sync.isOnlive = true;
   sync.roomNumber = snap.roomNumber;
   setStateBars(sync);
+})
+ipcRenderer.on('userListArrived', (ev, snap) => {
+  sync.userList = [];
+  sync.userList = snap
+  userLister(sync);
 })
 
 ipcRenderer.on('log', (ev, snap) => {
@@ -126,7 +132,6 @@ $("#sync").click(function (e) {
               if (result.value) {
                 sync.roomNumber = result.value;
                 ipcRenderer.send('joinedRoom', sync)
-
               }
             })
           }
@@ -143,7 +148,9 @@ $("#sync").click(function (e) {
       confirmButtonText: 'Disconnect!'
     }).then((result) => {
       if (result.value) {
-        //todo disconnected
+        sync.isOnlive = false;
+        setStateBars(sync);
+        ipcRenderer.send('iDisconnected', sync)
       }
     })
   }
@@ -155,11 +162,25 @@ var setStateBars = function (sync) {
     $('#usersStatus').prop('disabled', false);
     $("#sync").prop('disabled', false);
     $('#onlineStatus').html('<span class="badge bg-success my-3 my-md-0 ml-md-3 mr-md-auto">Online</span>');
-    $('#roomStatus').html('<span class="badge bg-dark my-3 my-md-0 ml-md-3 mr-md-auto"> Room: '+ sync.roomNumber +'</span>');
+    $('#roomStatus').html('<span class="badge bg-dark my-3 my-md-0 ml-md-3 mr-md-auto"> Room: ' + sync.roomNumber + '</span>');  
   } else {
     $('#usersStatus').prop('disabled', true);
     $("#sync").prop('disabled', true);
     $('#onlineStatus').html('<span class="badge bg-warning my-3 my-md-0 ml-md-3 mr-md-auto">Offline</span>');
     $('#roomStatus').html(' ');
+    $('#userLister').html('  ');
+  }
+}
+
+let userLister = function (sync) {
+  if (sync.isOnlive) {
+    if (sync.userList != undefined) {
+      $('#userLister').html('  ');
+      for (let index = 0; index < sync.userList.length; index++) {
+        $('#userLister').append('<li class="media"><div class="mr-3"><img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"class="rounded-circle" alt=""></div><div class="media-body"><a href="#" class="media-title text-white font-weight-semibold">' + sync.userList[index] + '</a><span class="d-block text-muted font-size-sm">Can Edit</span></div><div class="ml-3 align-self-center"><span class="badge badge-mark border-success"></span></div></li>')
+      }
+    }
+  } else {
+    $('#userLister').html('  ');
   }
 }
