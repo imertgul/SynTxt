@@ -16,9 +16,10 @@ ipcRenderer.on('lineUpdated', (ev, update_context) => {
 })
 
 
-function pushLine(lineNumber, lineText) {
-    ipcRenderer.send('linePush', {
-        lineNumber: lineNumber,
-        lineText: lineText
-    })
+function pushLines(lines) {
+    ipcRenderer.send('linePush', lines);
+}
+
+function deleteLines(line_numbers) {
+    ipcRenderer.send('lineDelete', line_numbers);
 }
