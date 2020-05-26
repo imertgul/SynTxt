@@ -3,6 +3,11 @@ function getCurrentLine() {
     return lines[getCurrentLineNumber() - 1]
 }
 
+function getLine(line_number) {
+    let lines = editor.value.substring(0, editor.value.length).split("\n")
+    return lines[line_number]
+}
+
 function getLineDifference(previous, current, same_length = true){
     let diff = []
 
