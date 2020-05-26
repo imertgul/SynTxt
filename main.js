@@ -78,13 +78,12 @@ ipcMain.on('joinedRoom', (ev, snap) => {
     //realTimeDatabase.goOnline();
     realTimeDatabase.ref(sync.roomNumber).once('value', function (snap) {
         if (snap.exists()) {
-            sync.isOnlive = true;            
+            sync.isOnlive = true;
             win[0].webContents.send('joinedSuccessfuly', sync);
             userList = myFunctions.setUsers(realTimeDatabase, sync, win[0]);
             updatehandler()
-            return sendDataToRenderer() 
-        }
-        else
+            return sendDataToRenderer()
+        } else
             return myFunctions.sweetAlerter(win[0], "Can not find a room!", "error");
     })
 })
