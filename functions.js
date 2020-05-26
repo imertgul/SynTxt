@@ -1,26 +1,53 @@
 (function () {
     var someThings;
 
-    module.exports.onDisconnect = function (firebase, sync, msg) {
-        firebase.database().ref(sync.roomNumber).onDisconnect().set(msg, function (err) {
-            if (err) {
-                win[0].webContents.send('log', {
-                    string: 'Disconnected!',
-                    icon: 'warning'
-                })
+    module.exports.setUsers = function (realTimeDatabase, sync, win) {
+        realTimeDatabase.ref(sync.roomNumber).child('users').push(sync.userName).once('value', function (user) {
+            realTimeDatabase.ref(sync.roomNumber).child('users').once('value', function (snapshot) {
+                let userList = snapshot.val();
+                let keyList = Object.keys(userList)
+                let users = [];
+                for (let index = 0; index < keyList.length; index++) {
+                    users[index] = userList[keyList[index]];
+                }
+                console.log(users);
+                
+                //win.webContents.send('userListArrived', users);
+                return users;
+            })
+        });
+    }
+    module.exports.checkUsers = function (realTimeDatabase, sync, win) {
+        realTimeDatabase.ref(sync.roomNumber).child('users').once('value', function (snapshot) {
+            if (snapshot.val()) { //TODO: BUNLARI YAPMAMIZ LAZIM HEPSİNE
+                let userList = snapshot.val();
+                let keyList = Object.keys(userList)
+                let users = [];
+                for (let index = 0; index < keyList.length; index++) {
+                    users[index] = userList[keyList[index]];
+                }
+                console.log(users);
+                win.webContents.send('userListArrived', users);
+                return users;
             }
         })
     }
-    module.exports.isConnected = function (firebase) {
-        var connectedRef = firebase.database().ref(".info/connected");
-        connectedRef.on("value", function (snap) {
-            if (snap.val() === true) {
-                return true;
-            } else {
-                return false;
+    module.exports.onDisconnect = function (realTimeDatabase, sync) {
+        realTimeDatabase.ref(sync.roomNumber).child('users').once('value', function (snap) {
+            let userList = snap.val();
+            let keyList = Object.keys(userList)
+            for (let index = 0; index < keyList.length; index++) {
+                if (sync.userName == userList[keyList[index]]) {
+                    realTimeDatabase.ref(sync.roomNumber).child('users').child(keyList[index]).remove();
+                }
             }
-        });
+            if (keyList.length = 1 && userList[keyList[0]] == sync.userName) {
+                realTimeDatabase.ref(sync.roomNumber).remove();
+            }
+        })
+        //realTimeDatabase.goOffline();
     }
+
     module.exports.sweetAlerter = function (win, messages, icon) {
         win.webContents.send('log', {
             string: messages,
@@ -29,7 +56,7 @@
     }
 
     module.exports.getHtmlFilters = function () {
-        return  html_filters = [{
+        return html_filters = [{
             'name': "HTML file",
             'extensions': ["html"]
         }];
@@ -41,7 +68,7 @@
         }];
     }
     module.exports.getMdFilters = function () {
-        return  md_filters = [{
+        return md_filters = [{
             'name': "Markdown file",
             'extensions': ["md"]
         }];

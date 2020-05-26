@@ -80,8 +80,8 @@
 						</div>
 
 						<div class="dropdown-content-body dropdown-scrollable">
-							<ul class="media-list">
-								<li class="media">
+							<ul class="media-list" id="userLister">
+								<!-- <li class="media">
 									<div class="mr-3">
 										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
 											class="rounded-circle" alt="">
@@ -89,30 +89,17 @@
 									<div class="media-body">
 										<a href="#" class="media-title text-white font-weight-semibold">Jordana
 											Ansley</a>
-										<span class="d-block text-muted font-size-sm">Lead web developer</span>
+										<span class="d-block text-muted font-size-sm">Can Edit</span>
 									</div>
 									<div class="ml-3 align-self-center"><span
 											class="badge badge-mark border-success"></span></div>
-								</li>
-
-								<li class="media">
-									<div class="mr-3">
-										<img src="../assets/images/placeholders/placeholder.jpg" width="36" height="36"
-											class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<a href="#" class="media-title text-white font-weight-semibold">Will Brason</a>
-										<span class="d-block text-muted font-size-sm">Marketing manager</span>
-									</div>
-									<div class="ml-3 align-self-center"><span
-											class="badge badge-mark border-danger"></span></div>
-								</li>
+								</li>								 -->
 
 							</ul>
 						</div>
 
 						<div class="dropdown-content-footer">
-							<a href="#" class="text-white mr-auto">All users</a>
+							<a href="#" class="text-white mr-auto">Details</a>
 							<a href="#" class="text-white"><i class="icon-gear"></i></a>
 						</div>
 					</div>
@@ -121,6 +108,9 @@
 
 			<div id="onlineStatus">
 				<span class="badge bg-warning my-3 my-md-0 ml-md-3 mr-md-auto">Offline</span>
+			</div>
+			<div id="roomStatus">
+				<!-- <span class="badge bg-dark my-3 my-md-0 ml-md-3 mr-md-auto">25825</span> -->
 			</div>
 		</div>
 	</div>
@@ -267,7 +257,7 @@
 								<!-- <textarea id="m-editor" class="lined" style="width: calc(100% - 150px); height: calc(100% - 120px);"></textarea> -->
 								<div id="editor">
 									<textarea id="m-editor" class="lined"
-										style="width:calc(100% - 200px); height: 100%;" rows="40">
+										style="width:calc(100% - 100px); height: 100%;" rows="40">
 # Syntxt
 
 Syntxt is a cloud-enabled, offline-storage Markdown editor.
