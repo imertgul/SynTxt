@@ -453,8 +453,8 @@
   min-width: 50%;
   max-width: 100%;
   padding: .375em .625em;
-  background: #323234;
-  color: #e1e1e1;
+  background: #262D3C !important;
+  color: #e1e1e1 !important;
   font-size: 1.125em; }
 
 .swal2-radio,
