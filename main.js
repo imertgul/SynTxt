@@ -28,6 +28,7 @@ var firebaseConfig = {
     appId: "1:728805023306:web:7cac2b60b726bec76ed0b3",
     measurementId: "G-Y1KW1EZM23"
 };
+
 firebase.initializeApp(firebaseConfig);
 var realTimeDatabase = firebase.database();
 
@@ -54,7 +55,7 @@ function updatehandler() {
     });
 
     realTimeDatabase.ref(sync.roomNumber).child('data').on('child_added', function () {
-        sendDataToRenderer()
+        sendDataToRenderer()//TODO: Bildirim gönder
     })
 
     realTimeDatabase.ref(sync.roomNumber).child('data').on('child_removed', function () {
@@ -62,13 +63,13 @@ function updatehandler() {
     })
 
     // realTimeDatabase.ref(sync.roomNumber).child('users').on('child_changed', function (snapshot) {
-    //     userList = myFunctions.checkUsers(realTimeDatabase, sync, win[0]);
+    //     myFunctions.checkUsers(realTimeDatabase, sync, win[0]);
     // });
     realTimeDatabase.ref(sync.roomNumber).child('users').on('child_added', function (snapshot) {
-        userList = myFunctions.checkUsers(realTimeDatabase, sync, win[0]);
+        myFunctions.checkUsers(realTimeDatabase, sync, win[0]);
     });
     realTimeDatabase.ref(sync.roomNumber).child('users').on('child_removed', function (snapshot) {
-        userList = myFunctions.checkUsers(realTimeDatabase, sync, win[0]);
+        myFunctions.checkUsers(realTimeDatabase, sync, win[0]);
     });
 }
 
@@ -80,7 +81,7 @@ ipcMain.on('joinedRoom', (ev, snap) => {
         if (snap.exists()) {
             sync.isOnlive = true;
             win[0].webContents.send('joinedSuccessfuly', sync);
-            userList = myFunctions.setUsers(realTimeDatabase, sync, win[0]);
+            myFunctions.setUsers(realTimeDatabase, sync, win[0]);
             updatehandler()
             return sendDataToRenderer()
         } else
@@ -97,7 +98,7 @@ ipcMain.on('roomCreated', (ev, data) => {
         realTimeDatabase.ref(sync.roomNumber).set({
             "data": data.text
         });
-        userList = myFunctions.setUsers(realTimeDatabase, sync, win[0]);//TODO: listeyi döndermesemde olur gibi
+        myFunctions.setUsers(realTimeDatabase, sync, win[0]);//TODO: listeyi döndermesemde olur gibi
         updatehandler()
     }
 });

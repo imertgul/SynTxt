@@ -17,29 +17,34 @@
     }
     module.exports.checkUsers = function (realTimeDatabase, sync, win) {
         realTimeDatabase.ref(sync.roomNumber).child('users').once('value', function (snapshot) {
-            if (snapshot.val()) { //TODO: BUNLARI YAPMAMIZ LAZIM HEPSİNE
+            if (snapshot.val()) { 
                 let userList = snapshot.val();
                 let keyList = Object.keys(userList)
                 let users = [];
                 for (let index = 0; index < keyList.length; index++) {
                     users[index] = userList[keyList[index]];
                 }
-                win.webContents.send('userListArrived', users);
-                return users;
+                try {
+                    win.webContents.send('userListArrived', users);                    
+                } catch (error) {
+                    console.log(error);                    
+                }
             }
         })
     }
     module.exports.onDisconnect = function (realTimeDatabase, sync) {
         realTimeDatabase.ref(sync.roomNumber).child('users').once('value', function (snap) {
-            let userList = snap.val();
-            let keyList = Object.keys(userList)
-            for (let index = 0; index < keyList.length; index++) {
-                if (sync.userName == userList[keyList[index]]) {
-                    realTimeDatabase.ref(sync.roomNumber).child('users').child(keyList[index]).remove();
+            if (snap.val()) {
+                let userList = snap.val();
+                let keyList = Object.keys(userList)
+                for (let index = 0; index < keyList.length; index++) {
+                    if (sync.userName == userList[keyList[index]]) {
+                        realTimeDatabase.ref(sync.roomNumber).child('users').child(keyList[index]).remove();
+                    }
                 }
-            }
-            if (keyList.length = 1 && userList[keyList[0]] == sync.userName) {
-                realTimeDatabase.ref(sync.roomNumber).remove();
+                if (keyList.length == 1 && userList[keyList[0]] == sync.userName) {
+                    realTimeDatabase.ref(sync.roomNumber).remove();
+                }
             }
         })
         //realTimeDatabase.goOffline();
