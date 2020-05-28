@@ -97,7 +97,7 @@ ipcMain.on('roomCreated', (ev, data) => {
         realTimeDatabase.ref(sync.roomNumber).set({
             "data": data.text
         });
-        userList = myFunctions.setUsers(realTimeDatabase, sync, win[0]);
+        userList = myFunctions.setUsers(realTimeDatabase, sync, win[0]);//TODO: listeyi döndermesemde olur gibi
         updatehandler()
     }
 });

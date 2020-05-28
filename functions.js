@@ -10,8 +10,6 @@
                 for (let index = 0; index < keyList.length; index++) {
                     users[index] = userList[keyList[index]];
                 }
-                console.log(users);
-                
                 //win.webContents.send('userListArrived', users);
                 return users;
             })
@@ -26,7 +24,6 @@
                 for (let index = 0; index < keyList.length; index++) {
                     users[index] = userList[keyList[index]];
                 }
-                console.log(users);
                 win.webContents.send('userListArrived', users);
                 return users;
             }
