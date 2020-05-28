@@ -27,15 +27,37 @@ function setAllLines(lines){
 }
 
 function setLine(line_number, value){
-    if (getCurrentLine() !== value) {
+    let curr_line = getCurrentLine()
+    let original_line = getLine(line_number)
+    let curr_line_number = getCurrentLineNumber()
+    let selection_start = editor.selectionStart
+    let selection_end = editor.selectionEnd
+
+    if (curr_line !== value) {
+        let offset = 0
+        
+        if (curr_line_number - 1 == line_number) {
+            deleteCurrentLine()
+            offset = value.length
+            selection_start = editor.selectionStart
+            selection_end = editor.selectionEnd
+        }
+        else if (curr_line_number > line_number) {
+            offset = value.length - original_line.length
+        }
+
         let lines = getAllLines()
         let start_position = 0
         let end_position
+
         // tam güncellenirken text silinirse (komple veya kısmi, emin değilim) cannot read property of null hatası veriyor
         for (let i = 0; i < line_number; i++) {
             start_position += lines[i].length + 1
         }
+
         end_position = start_position + lines[line_number].length
         editor.setRangeText(value, start_position, end_position)
+        
+        editor.setSelectionRange(start = selection_start + offset, end = selection_end + offset)
     }
 }

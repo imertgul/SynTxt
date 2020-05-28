@@ -102,10 +102,21 @@ ipcMain.on('roomCreated', (ev, data) => {
     }
 });
 
-ipcMain.on('linePush', (ev, update_context) => {
+ipcMain.on('lineDelete', (ev, line_numbers) => {
+    if (sync.isOnlive) {
+        for (let i = 0; i < line_numbers.length; i++) {
+            realTimeDatabase.ref(sync.roomNumber).child('data').child(line_numbers[i]).remove();
+        }
+    } else
+        console.log('isNotOnlive!');
+})
+
+ipcMain.on('linePush', (ev, lines) => {
     if (sync.isOnlive) {
         var updates = {};
-        updates[update_context.lineNumber - 1] = update_context.lineText;
+        for (let i = 0; i < lines.length; i++) {
+            updates[lines[i].line] = lines[i].text;
+        }
         realTimeDatabase.ref(sync.roomNumber).child('data').update(updates)
     } else
         console.log('isNotOnlive!');

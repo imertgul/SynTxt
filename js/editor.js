@@ -21,16 +21,6 @@ var MarkdownIt = require('markdown-it')
 md = new MarkdownIt();
 
 $("#m-editor").on("input", function (e) {
-    let undo_obj = history.undo(true)
-    let previous_lines = getAllLines(undo_obj[0])
-    let current_lines = getAllLines()
-    
-    if (previous_lines.length == current_lines){
-        pushLine(getCurrentLineNumber(), getCurrentLine())
-    }
-    else {
-        pushText(roomNumber = -1)
-    }
     // Check if the new textarea value is different
     if (history.current() !== editor.value) {
         // Check for pastes, auto corrects..
@@ -43,6 +33,26 @@ $("#m-editor").on("input", function (e) {
             history.record(editor.value, editor.selectionStart);
         }
     }
+
+    let undo_obj = history.undo(true)
+    let previous_lines = getAllLines(undo_obj[0])
+    let current_lines = getAllLines()
+
+    if (previous_lines.length == current_lines.length) { // Line changed
+        diff = getLineDifference(previous_lines, current_lines)
+    } 
+    else if (previous_lines.length > current_lines.length) { // Line removed 
+        to_be_deleted = []
+        for (let i = current_lines.length; i < previous_lines.length; i++) {
+            to_be_deleted.push(i)
+        }
+        deleteLines(to_be_deleted)
+        diff = getLineDifference(previous_lines, current_lines, false)
+    }
+    else { // Line added
+        diff = getLineDifference(previous_lines, current_lines, false)
+    }
+    pushLines(diff)
 })
 
 setTimeout(() => {

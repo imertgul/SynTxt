@@ -3,6 +3,38 @@ function getCurrentLine() {
     return lines[getCurrentLineNumber() - 1]
 }
 
+function getLine(line_number) {
+    let lines = editor.value.substring(0, editor.value.length).split("\n")
+    return lines[line_number]
+}
+
+function getLineDifference(previous, current, same_length = true){
+    let diff = []
+
+    if (same_length) {
+        for (let i = 0; i < previous.length; i++) {
+            if (previous[i] != current[i]) {
+                diff.push({ 'line': i, 'text': current[i] })
+            }
+        }
+
+        return diff
+    }
+    let i
+
+    for (i = 0; i < current.length; i++) {
+        if (current[i] != previous[i]){
+            break;
+        }
+    }
+    
+    for (let j = i; j < current.length; j++) {
+        diff.push({'line': j,'text':current[j]})
+    }
+    
+    return diff
+}
+
 function getAllLines(value) {
     let lines
     if (value) {
