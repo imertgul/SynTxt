@@ -15,3 +15,5 @@ npm install
 # Run the app
 npm start
 ```
+
+Also you have to set *.env* file 
