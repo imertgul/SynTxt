@@ -1,5 +1,5 @@
 # SynTxt
-A markdown editör with Electron
+Markdown editor with real-time collaboration feature using Electron
 
 ## To Use
 
@@ -16,4 +16,4 @@ npm install
 npm start
 ```
 
-Also you have to set *.env* file 
+Also you have to set *.env* file. As shown *.env_sample*  
