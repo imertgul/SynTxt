@@ -14,19 +14,20 @@ var fs = require('fs') //
 var md_pdf = require("markdown-pdf") //
 var MarkdownIt = require('markdown-it') //
 md = new MarkdownIt(); //
+require('dotenv').config()
 
 let win = [];
 app.on('ready', editorScreen);
 
 var firebaseConfig = {
-    apiKey: "AIzaSyBtu0QiT7b7T1O2eBdGj5idS7F-mjAA8Pk",
-    authDomain: "syntxt-10a1d.firebaseapp.com",
-    databaseURL: "https://syntxt-10a1d.firebaseio.com",
-    projectId: "syntxt-10a1d",
-    storageBucket: "syntxt-10a1d.appspot.com",
-    messagingSenderId: "728805023306",
-    appId: "1:728805023306:web:7cac2b60b726bec76ed0b3",
-    measurementId: "G-Y1KW1EZM23"
+    apiKey: process.env.apiKey,
+    authDomain: process.env.authDomain,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appId: process.env.appId,
+    measurementId: process.env.measurementId
 };
 
 firebase.initializeApp(firebaseConfig);
