@@ -12,12 +12,22 @@ const myFunctions = require('./functions.js')
 // Export için Zahid'in ekledikleri
 var fs = require('fs') //
 var md_pdf = require("markdown-pdf") //
-var MarkdownIt = require('markdown-it') //
+var MarkdownIt = require('markdown-it'); //
+const { log } = require('console');
 md = new MarkdownIt(); //
-require('dotenv').config()
+dotenv = require('dotenv')
 
 let win = [];
-app.on('ready', editorScreen);
+
+
+const result = dotenv.config()
+
+if (result.error) {
+    throw result.error
+}
+else {
+    app.on('ready', editorScreen);
+}
 
 var firebaseConfig = {
     apiKey: process.env.apiKey,

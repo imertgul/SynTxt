@@ -7,6 +7,11 @@ body {
   overflow-x: hidden;
 }
 
+.editor-btn {
+  margin-left: 8px !important; 
+  margin-right: 8px !important;
+}
+
 #sidebar-wrapper {
   min-height: 100vh;
   margin-left: -15rem;
