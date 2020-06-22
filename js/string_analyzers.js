@@ -1,12 +1,12 @@
 function getCurrentLine() {
     let lines = editor.value.substring(0, editor.value.length).split("\n")
     return lines[getCurrentLineNumber() - 1]
-}
+} // +
 
 function getLine(line_number) {
     let lines = editor.value.substring(0, editor.value.length).split("\n")
     return lines[line_number]
-}
+} // +
 
 function getLineDifference(previous, current, same_length = true){
     let diff = []
@@ -33,7 +33,7 @@ function getLineDifference(previous, current, same_length = true){
     }
     
     return diff
-}
+} // +
 
 function getAllLines(value) {
     let lines
@@ -44,11 +44,11 @@ function getAllLines(value) {
         lines = editor.value.substring(0, editor.value.length).split("\n")
     }
     return lines
-}
+} // +
 
 function getCurrentLineNumber() {
     return editor.value.substring(0, editor.selectionStart).split("\n").length
-}
+} // +
 
 function getCurrentLineRange() {
     let lines = editor.value.substring(0, editor.value.length).split("\n")
@@ -60,7 +60,7 @@ function getCurrentLineRange() {
     }
     end = start + lines[curr_line_no - 1].length
     return {'start':start, 'end':end}
-}
+} // +
 
 function checkFixesLinkTags() {
     let value_after_selected = editor.value.substring(editor.selectionEnd, editor.value.length)
@@ -78,7 +78,7 @@ function checkFixesLinkTags() {
         }
     }
     return null
-}
+} // +
 
 function checkWholeTextLinkTags(value) {
     let image_regex = /!{1}\[{1}.*\]{1}\({1}.*\)/g
@@ -93,15 +93,15 @@ function checkWholeTextLinkTags(value) {
         return { 'start': link_regex_result[0].indexOf("[") + 1, 'end': link_regex_result[0].indexOf("]") }
     }
     return null
-}
+} // +
 
 function isUnorderedItem(value) {
     return value.startsWith(" - ")
-}
+} // +
 
 function isCheckItem(value) {
     return value.startsWith(" - [")
-}
+} // +
 
 function isOrderedItem(value) {
     let dot_index = value.indexOf(".")
@@ -111,14 +111,14 @@ function isOrderedItem(value) {
         }
     }
     return false
-}
+} //
 
 function isEmptyListItem(value) {
     let trimmed = value.trim()
     let orderedItemRegex = /^[0-9]+\.{1}$/g
     let regexResult = orderedItemRegex.test(trimmed)
     return trimmed == "-" || trimmed == "- [ ]" || regexResult
-}
+} //
 
 function checkHeadingInString(value) {
     let heading_size = 0
@@ -136,7 +136,7 @@ function checkHeadingInString(value) {
         }
     }
     return { 'heading': heading_size, 'offset': offset }
-}
+} //
 
 function checkHeadingBeforeString(start) {
     let heading_size = 0
@@ -154,7 +154,7 @@ function checkHeadingBeforeString(start) {
         }
     }
     return { 'heading': heading_size, 'offset': offset }
-}
+} //
 
 function checkPrevLineBreak(start, tag) {
     let i = 1
@@ -170,7 +170,7 @@ function checkPrevLineBreak(start, tag) {
         i++
     }
     return false
-}
+} //
 
 function checkNextLineBreak(end) {
     let i = 1
@@ -191,7 +191,7 @@ function checkNextLineBreak(end) {
         a++
     }
     return break_next
-}
+} //
 
 function checkTag(start, tag) {
     let i = 1

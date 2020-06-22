@@ -132,39 +132,51 @@ $("#m-editor").keydown(function (e) {
         switch (e.which) {
             case 66: // Ctrl + Shift + B => toggles bold text style
                 toggleTextStyle(start_tag = "**", end_tag = "**", placeholder = "bold text")
+                $("#m-editor").trigger("input")
                 break;
             case 73: // Ctrl + Shift + I => toggles italic text style
                 toggleTextStyle(start_tag = "*", end_tag = "*", placeholder = "italic text")
+                $("#m-editor").trigger("input")
                 break;
             case 72: // Ctrl + Shift + H => toggles heading
-                // console.log("Toggle Heading");
+                toggleHeading(placeholder = "Heading")
+                $("#m-editor").trigger("input")
                 break;
             case 83: // Ctrl + Shift + S => toggles strikethrough text style
                 toggleTextStyle(start_tag = "~~", end_tag = "~~", placeholder = "strikethrough text")
+                $("#m-editor").trigger("input")
                 break;
             case 85: // Ctrl + Shift + U => toggles unordered list
                 makeUList()
+                $("#m-editor").trigger("input")
                 break;
             case 79: // Ctrl + Shift + O => toggles ordered list
                 makeOList()
+                $("#m-editor").trigger("input")
                 break;
             case 67: // Ctrl + Shift + C => toggles check list
                 makeCList()
+                $("#m-editor").trigger("input")
                 break;
             case 81: // Ctrl + Shift + Q => toggles blockquote
                 toggleBlockQuote()
+                $("#m-editor").trigger("input")
                 break;
             case 75: // Ctrl + Shift + K => toggles code
                 toggleCode()
+                $("#m-editor").trigger("input")
                 break;
             case 84: // Ctrl + Shift + T => toggles table
                 insertTable()
+                $("#m-editor").trigger("input")
                 break;
             case 76: // Ctrl + Shift + L => toggles link
                 toggleLink();
+                $("#m-editor").trigger("input")
                 break;
             case 71: // Ctrl + Shift + G => toggles image
                 toggleImage();
+                $("#m-editor").trigger("input")
                 break;
         }
     }
