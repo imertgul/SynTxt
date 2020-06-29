@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "win": "electron-packager ./dist SynTxt --platform=win32 --arch=x64"
   },
   "author": "",
   "license": "ISC",

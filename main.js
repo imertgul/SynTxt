@@ -150,7 +150,7 @@ ipcMain.on('export', (ev, export_context) => {
     }
 
     if (type == "MD") {
-        options.filters = myFunctions.getMD()
+        options.filters = myFunctions.getMdFilters()
     } else if (type == "HTML") {
         options.filters = myFunctions.getHtmlFilters()
     } else {
