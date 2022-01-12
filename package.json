@@ -15,7 +15,7 @@
     "dotenv": "^8.2.0",
     "electron": "^8.1.0",
     "firebase": "^7.14.2",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "markdown-pdf": "^10.0.0",
     "sweetalert2": "^9.13.1"
   }
